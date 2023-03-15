@@ -1,0 +1,39 @@
+.user-container {
+	padding-top: 10vh;
+	padding-bottom: 10vh;
+}
+
+#like-icon {
+	display: flex;
+}
+
+#like {
+	transition: ease-in-out 0.1s;
+}
+
+#like:active {
+	transform: scale(1.3);
+}
+
+#like-icon span {
+	margin-left: 1rem;
+}
+
+#comment-icon {
+	margin-left: 1rem;
+}
+
+#photo-tweet {
+	width: 2.5rem;
+	height: 2.5rem;
+}
+
+#photo-tweet img {
+	object-fit: contain;
+	width: 100%;
+	border-radius: 50%;
+}
+
+#tweet-home {
+	margin-left: 1rem;
+}

@@ -1,6 +1,4 @@
-import Style from '../WhatsHappening/WhatsHappening.module.css'
-
-
+import Style from "./SideCards.module.css";
 
 function WhatsHappening() {
 	return (

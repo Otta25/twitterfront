@@ -1,5 +1,4 @@
-import Style from '../WhoToFollow/WhoToFollow.module.css'
-
+import Style from "./SideCards.module.css";
 
 function WhoToFollow() {
 	return (
