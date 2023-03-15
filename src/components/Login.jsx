@@ -8,7 +8,8 @@ import { useNavigate, Link } from "react-router-dom";
 function Login() {
   const [inputUser, setInputUser] = React.useState("");
   const [inputPassword, setInputPassword] = React.useState("");
-  const [token, setToken] = React.useState(""); //Esto tendría que ir en la store
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -20,12 +21,8 @@ function Login() {
         password: inputPassword,
       },
     });
-    setToken(response.data.token);
-  };
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const handleClick = () => {
-    dispatch(createToken(token));
+    dispatch(createToken(response.data.token));
+    navigate("/");
   };
 
   return (
@@ -55,13 +52,7 @@ function Login() {
             />
           </div>
 
-          <button type="submit" onClick={dispatch(createToken(token))}>
-            Login
-          </button>
-
-          <button type="submit" onClick={() => navigate(-1)}>
-            Home
-          </button>
+          <button type="submit">Login</button>
         </form>
       </div>
     </>

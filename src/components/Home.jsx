@@ -24,7 +24,6 @@ function Home() {
       <h2>
         {user.firstname} {user.lastname}
       </h2>
-      ;
     </>
   );
 }
