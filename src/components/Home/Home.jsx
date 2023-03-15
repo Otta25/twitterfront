@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import React from "react";
 import { useSelector } from "react-redux";
+import Styles from '../Home/Home.module.css'
+import Tweet from "../Tweet/Tweet";
 
 function Home() {
   const token = useSelector((state) => state.token);
@@ -43,7 +45,7 @@ function Home() {
         {user.firstname} {user.lastname}
       </h2>
       {tweets.map(
-        (tweet) => tweet.author._id === user._id && <p>{tweet.content}</p>
+        (tweet) =>  tweet.author._id === user._id && <Tweet content={tweet.content} user={tweet.author.username} /> 
       )}
     </>
   );
