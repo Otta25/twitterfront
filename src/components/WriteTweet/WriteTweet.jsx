@@ -1,3 +1,6 @@
+import Style from '../WriteTweet/WriteTweet.module.css'
+
+
 function WriteTweet() {
 	return (
 		<div class="border-bottom p-3">

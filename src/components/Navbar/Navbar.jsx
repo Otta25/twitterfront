@@ -1,4 +1,8 @@
-function navbar() {
+import Style from '../Navbar/Navbar.module.css'
+
+
+
+function Navbar() {
 	return (
 		<div id="main-navbar">
 			<nav class="">
@@ -132,4 +136,4 @@ function navbar() {
 	);
 }
 
-export default navbar;
+export default Navbar;

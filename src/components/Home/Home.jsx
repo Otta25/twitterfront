@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import Styles from '../Home/Home.module.css'
 import Tweet from "../Tweet/Tweet";
 import { Link } from "react-router-dom";
+import Navbar from "../Navbar/Navbar";
 
 function Home() {
   const token = useSelector((state) => state.token);
@@ -39,7 +40,8 @@ function Home() {
   }, []);
 
   return (
-    <>
+    <> 
+    <Navbar></Navbar>
       <Link to='/profile'>Profile</Link>
       <h2>
         {user.firstname} {user.lastname}

@@ -4,7 +4,7 @@ import Login from "./components/Login/Login";
 import React from "react";
 import { useSelector } from "react-redux"
 import { Routes, Route } from "react-router-dom";
-
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   const token = useSelector((state) => state.token);

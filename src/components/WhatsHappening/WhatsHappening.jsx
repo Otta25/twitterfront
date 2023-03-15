@@ -1,3 +1,7 @@
+import Style from '../WhatsHappening/WhatsHappening.module.css'
+
+
+
 function WhatsHappening() {
 	return (
 		<div class="card border-0 px-2 card-css">

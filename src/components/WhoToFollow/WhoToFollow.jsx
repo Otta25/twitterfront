@@ -1,3 +1,6 @@
+import Style from '../WhoToFollow/WhoToFollow.module.css'
+
+
 function WhoToFollow() {
 	return (
 		<div class="card border-0 px-2 card-css">
