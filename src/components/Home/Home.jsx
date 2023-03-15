@@ -4,10 +4,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Styles from '../Home/Home.module.css'
 import Tweet from "../Tweet/Tweet";
+import { Link } from "react-router-dom";
 
 function Home() {
   const token = useSelector((state) => state.token);
-  console.log(token);
+
   const [user, setUser] = useState([]);
 
   useEffect(() => {
@@ -37,10 +38,9 @@ function Home() {
     getTweets();
   }, []);
 
-  console.log(tweets);
-
   return (
     <>
+      <Link to='/profile'>Profile</Link>
       <h2>
         {user.firstname} {user.lastname}
       </h2>
