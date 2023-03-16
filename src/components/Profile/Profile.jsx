@@ -26,12 +26,13 @@ function Profile() {
       setTweets(response.data.data.tweets);
       setFollowersNumber(response.data.data.user.followers.length)
       setFollowingNumber(response.data.data.user.following.length)
+      console.log(response.data.data)
     };
     getProfileData();
   }, []);
 
-  console.log(profile);
-  console.log(tweets);
+
+console.log(tweets)
 
   return (
     <>
@@ -59,6 +60,9 @@ function Profile() {
                 <span>{ followersNumber}</span>
                 <span className="gray-letter ms-1 me-2">Followers</span>
               </div>
+            </div>
+            <div className="tweet-container">
+              {tweets.map(tweet => <Tweet tweet={tweet} user={tweet.author} />)}
             </div>
           </div>
         </div>

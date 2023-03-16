@@ -49,8 +49,8 @@ function Tweet({ tweet, user }) {
 							</div>
 						</div>
 						<div class="col">
-							<h5 class="inline-b fw-semibold mb-1">{user}</h5>
-							<p class="inline-b font-grey mb-1">@{user}</p>
+							<h5 class="inline-b fw-semibold mb-1">{user.firstname}</h5>
+							<p class="inline-b font-grey mb-1">@{user.username}</p>
 							<span>•</span>
 							<p class="inline-b font-grey mb-1"> ago</p>
 							<p class="card-text">{tweet.content}</p>
