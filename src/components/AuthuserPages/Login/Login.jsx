@@ -47,8 +47,9 @@ function Login() {
 								onSubmit={handleSubmit}
 							>
 								<input
-									type="password"
-									name="password"
+									type="text"
+									name="user"
+									id="user"
 									className="form-control"
 									placeholder="Username"
 									value={inputUser}
