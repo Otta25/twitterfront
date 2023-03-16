@@ -9,7 +9,7 @@ import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   const token = useSelector((state) => state.token);
-  console.log(token);
+
   return (
     <div className="App">
       <Routes>

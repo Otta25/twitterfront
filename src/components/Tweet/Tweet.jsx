@@ -32,8 +32,6 @@ function Tweet({ tweet, user }) {
     }
   };
 
-
-
   return (
     <div className="border-bottom border-top w-100">
       <div className="my-3">
