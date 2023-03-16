@@ -9,6 +9,8 @@ function Profile() {
   const token = useSelector((state) => state.token);
   const [profile, setProfile] = useState([]);
   const [tweets, setTweets] = useState([]);
+  const [followersNumber ,setFollowersNumber] =useState(0)
+  const [followingNumber ,setFollowingNumber] =useState(0)
 
   console.log(token);
 
@@ -17,26 +19,18 @@ function Profile() {
       const response = await axios({
         headers: { Authorization: `Bearer ${token}` },
         method: "get",
-        url: "http://localhost:8000/usuarios/63fd4e7519cbc68113f037b1",
+        url: "http://localhost:8000/users/6411fda83ceb22a13d8bbda5",
       });
-      setProfile(response.data.user);
-      setTweets(response.data.tweets);
+      setProfile(response.data.data.user);
+      setTweets(response.data.data.tweets);
+      setFollowersNumber(response.data.data.user.followers.length)
+      setFollowingNumber(response.data.data.user.following.length)
     };
     getProfileData();
   }, []);
 
-  useEffect(() => {
-    if (!profile) {
-      setProfile;
-    }
-  }, [profile]);
-
   console.log(profile);
   console.log(tweets);
-
-  {
-    profile ? <h2>Fede</h2> : <h2>Error</h2>;
-  }
 
   return (
     <>
@@ -46,7 +40,7 @@ function Profile() {
           <div className="col-2 border-end">Nabvar side</div>
           <div className="col-9 col-lg-5 px-0">
             <div id="blue-div">
-              <img src="" alt="foto-perfil" id="profile-Photo" />
+              <img src={profile.photoProfile} alt="foto-perfil" id="profile-Photo" />
               <button id="follow-btn">Follow</button>
             </div>
             <div id="white-div">
@@ -57,9 +51,9 @@ function Profile() {
                 <p>@{profile.username}</p>
               </div>
               <div>
-                <span>{profile.following.length}</span>
+                <span>{followingNumber}</span>
                 <span className="gray-letter ms-1 me-2">Following</span>
-                <span>{profile.followers.length}</span>
+                <span>{ followersNumber}</span>
                 <span className="gray-letter ms-1 me-2">Followers</span>
               </div>
             </div>
