@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { createToken } from "../../../reducers/tokenReducer";
 import { useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
+import "./Login.css";
 
 function Login() {
 	const [inputUser, setInputUser] = React.useState("");
@@ -26,40 +27,64 @@ function Login() {
 	};
 
 	return (
-		<>
-			<h2>este es la login</h2>
-			<div className="login">
-				<form action="" onSubmit={handleSubmit}>
-					<div>
-						<label htmlFor="user">user</label>
-						<input
-							type="text"
-							name="user"
-							id="user"
-							value={inputUser}
-							onChange={(event) =>
-								setInputUser(event.target.value)
-							}
-						/>
+		<div className="sign-form-body d-flex align-items-center">
+			<div className="container-fluid">
+				<div className="row">
+					<div className="col blueSideCol rounded-start white position-relative px-3 d-none d-lg-block">
+						<i className="bi bi-twitter fs-1"></i>
+						<h2 className="fw-semibold fs-3 position-absolute bottom-0">
+							Hi! Welcome to Twitter Clone 👋
+						</h2>
 					</div>
-
-					<div>
-						<label htmlFor="password">password</label>
-						<input
-							type="text"
-							name="password"
-							id="password"
-							value={inputPassword}
-							onChange={(event) =>
-								setInputPassword(event.target.value)
-							}
-						/>
+					<div className="col bg-white borders user-container">
+						<div className="container">
+							<h1 className="mb-2 fw-semibold fs-2">Log In</h1>
+							<p>Ready to start using Twitter?</p>
+							<form
+								action="/login"
+								method="POST"
+								className="sign-up-form"
+								onSubmit={handleSubmit}
+							>
+								<input
+									type="text"
+									name="user"
+									id="user"
+									className="form-control"
+									placeholder="Username"
+									value={inputUser}
+									onChange={(event) =>
+										setInputUser(event.target.value)
+									}
+								/>
+								<input
+									type="password"
+									name="password"
+									className="form-control"
+									placeholder="Password"
+									value={inputPassword}
+									onChange={(event) =>
+										setInputPassword(event.target.value)
+									}
+								/>
+								<button
+									type="submit"
+									className="btn btn-twitter"
+								>
+									Login
+								</button>
+								<span>
+									Don't have an account?{" "}
+									<a href="/sign-up" className="text-primary">
+										Sign up
+									</a>
+								</span>
+							</form>
+						</div>
 					</div>
-
-					<button type="submit">Login</button>
-				</form>
+				</div>
 			</div>
-		</>
+		</div>
 	);
 }
 
