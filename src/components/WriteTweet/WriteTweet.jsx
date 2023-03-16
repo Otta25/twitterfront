@@ -19,7 +19,7 @@ function WriteTweet() {
 							<a href="/usuarios/<%=req.user.username%>">
 								<img
 									class="ms-2 tiny-pic-profile "
-									src="<%=req.user.photoProfile%>"
+									
 									alt=""
 									srcset=""
 								/>

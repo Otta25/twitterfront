@@ -56,8 +56,9 @@ function Home() {
 							(tweet) =>
 								tweet.author._id === user._id && (
 									<Tweet
-										likes={tweet.likes.length}
+										
 										user={tweet.author.username}
+										tweet={tweet}
 									/>
 								)
 						)}

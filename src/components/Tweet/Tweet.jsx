@@ -60,7 +60,7 @@ function Tweet({ tweet, user }) {
 											>
 												{liked
 													? "No me gusta"
-													: "Me gusta"}{" "}
+													: "Me gusta"}
 												({likes.length})
 											</button>
 											<span></span>
