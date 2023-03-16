@@ -64,8 +64,7 @@ function Home() {
 					</div>
 
 					<div className="d-none d-lg-block col-lg-2 border-start">
-						<WhatsHappening user={user} /> <br />
-						<WhoToFollow user={user} />
+						<WhatsHappening /> <br /> <WhoToFollow />
 					</div>
 					<div className="d-none d-xl-block col-2"></div>
 				</div>
