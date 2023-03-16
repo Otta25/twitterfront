@@ -7,6 +7,7 @@ import Tweet from "../Tweet/Tweet";
 import Navbar from "../Navbar/Navbar";
 import WhoToFollow from "../SideCards/WhoToFollow";
 import WhatsHappening from "../SideCards/WhatsHappening";
+import WriteTweet from "../WriteTweet/WriteTweet";
 
 function Home() {
 	const token = useSelector((state) => state.token);
@@ -50,13 +51,15 @@ function Home() {
 					</div>
 
 					<div id="main-home-container" className="col-9 col-lg-5">
+						<WriteTweet></WriteTweet>
 						{tweets.map(
 							(tweet) =>
 								tweet.author._id === user._id && (
 									<Tweet
-										likes={tweet.likes.length}
-										content={tweet.content}
+										tweet={tweet}
 										user={tweet.author.username}
+										
+										
 									/>
 								)
 						)}
