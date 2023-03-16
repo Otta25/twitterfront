@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/Login" element={<Login />} />
         <Route path="/" element={token ? <Home /> : <Login />} />
-        <Route path="/Profile" element={<Profile />} />
+        <Route path="/users/:id" element={<Profile />} />
       </Routes>
     </div>
   );

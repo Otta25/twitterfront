@@ -1,9 +1,10 @@
 import React from "react";
 import Tweet from "../Tweet/Tweet";
-
+import Navbar from "../Navbar/Navbar";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useParams } from "react-router";
 
 function Profile() {
   const token = useSelector((state) => state.token);
@@ -11,15 +12,15 @@ function Profile() {
   const [tweets, setTweets] = useState([]);
   const [followersNumber ,setFollowersNumber] =useState(0)
   const [followingNumber ,setFollowingNumber] =useState(0)
+  const {id} = useParams()
 
-  console.log(token);
 
   useEffect(() => {
     const getProfileData = async () => {
       const response = await axios({
         headers: { Authorization: `Bearer ${token}` },
         method: "get",
-        url: "http://localhost:8000/users/6411fda83ceb22a13d8bbda5",
+        url: `http://localhost:8000/users/${id}`,
       });
       setProfile(response.data.data.user);
       setTweets(response.data.data.tweets);
@@ -37,7 +38,9 @@ function Profile() {
       <div className="container-fluid">
         <div className="row">
           <div className="d-none d-xl-block col-lg-1"></div>
-          <div className="col-2 border-end">Nabvar side</div>
+          <div className="col-2 border-end">
+            <Navbar></Navbar>
+          </div>
           <div className="col-9 col-lg-5 px-0">
             <div id="blue-div">
               <img src={profile.photoProfile} alt="foto-perfil" id="profile-Photo" />

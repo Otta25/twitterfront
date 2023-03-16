@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import FollowBtn from "../SmallComponents/FollowBtn";
 
 function UserToFollow({ user }) {
@@ -13,12 +14,12 @@ function UserToFollow({ user }) {
 						/>
 					</div>
 					<div className="col-5">
-						<a
+						<Link to={'/users/'+ user._id}
 							href={"/users/"+user.username}
 							className="d-block text-truncate mb-0 fw-bold text-dark"
 						>
 							{user.username}
-						</a>
+						</Link>
 						<p className="mb-0 font-grey fs-6 text-truncate">
 							@{user.username}
 						</p>
