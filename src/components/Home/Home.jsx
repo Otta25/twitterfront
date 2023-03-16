@@ -4,7 +4,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 import "./Home.css";
 import Tweet from "../Tweet/Tweet";
-import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import WhoToFollow from "../SideCards/WhoToFollow";
 import WhatsHappening from "../SideCards/WhatsHappening";
@@ -32,7 +31,7 @@ function Home() {
 	useEffect(() => {
 		const getTweets = async () => {
 			const response = await axios({
-				// headers: { Authorization: `Bearer ${token}` },
+				headers: { Authorization: `Bearer ${token}` },
 				method: "get",
 				url: "http://localhost:8000/tweets",
 			});
@@ -63,7 +62,8 @@ function Home() {
 					</div>
 
 					<div className="d-none d-lg-block col-lg-2 border-start">
-						<WhatsHappening /> <br /> <WhoToFollow />
+						<WhatsHappening user={user} /> <br />
+						<WhoToFollow user={user} />
 					</div>
 					<div className="d-none d-xl-block col-2"></div>
 				</div>
