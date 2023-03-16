@@ -1,7 +1,34 @@
-import React from "react";
 import Style from "../Tweet/Tweet.module.css";
+import React, { useState } from "react";
+import axios from "axios";
+import { useDispatch } from "react-redux";
 
-function Tweet({ content, user, likes }) {
+function Tweet({ tweet, user }) {
+	const [likes, setLikes] = useState(tweet.likes);
+	const [liked, setLiked] = useState(likes.includes(user));
+	const dispatch = useDispatch();
+
+	const handleLike = async () => {
+		console.log("sape");
+		console.log(tweet._id);
+
+		if (liked) {
+			const response = await axios.delete(
+				`http://localhost:8000/tweets/${tweet._id}/likes`,
+				{ data: { user } }
+			);
+			dispatch(setLikes(response.data.likes));
+			setLiked(false);
+		} else {
+			const response = await axios.post(
+				`http://localhost:8000/tweets/${tweet._id}/likes`,
+				{ data: { user } }
+			);
+			dispatch(setLikes(response.data.likes));
+			setLiked(true);
+		}
+	};
+
 	return (
 		<div className="border-bottom border-top w-100">
 			<div className="my-3">
@@ -17,25 +44,26 @@ function Tweet({ content, user, likes }) {
 								/>
 							</div>
 						</div>
-						<div className="col">
-							<h5 className="inline-b fw-semibold mb-1">
-								{user.username}
-							</h5>
-							<p className="inline-b font-grey mb-1">
-								@{user.username}
-							</p>
+						<div class="col">
+							<h5 class="inline-b fw-semibold mb-1">{user}</h5>
+							<p class="inline-b font-grey mb-1">@{user}</p>
 							<span>•</span>
-							<p className="inline-b font-grey mb-1"> ago</p>
-							<p className="card-text">{content}</p>
-							<div className="d-flex justify-content-between">
+							<p class="inline-b font-grey mb-1"> ago</p>
+							<p class="card-text">{tweet.content}</p>
+							<div class="d-flex justify-content-between">
 								<div id="interact-icon">
 									<ul id="interaction-list">
 										<li id="like-icon">
-											<form
-												method="post"
-												action="/tweets/<%=tweet._id%>/addLike"
-											></form>
-											<span>{likes}</span>
+											<button
+												className="btn btn-danger"
+												onClick={handleLike}
+											>
+												{liked
+													? "No me gusta"
+													: "Me gusta"}{" "}
+												({likes.length})
+											</button>
+											<span></span>
 										</li>
 										<li id="comment-icon">
 											<svg
