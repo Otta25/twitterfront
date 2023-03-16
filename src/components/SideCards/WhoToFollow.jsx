@@ -11,11 +11,10 @@ function WhoToFollow() {
 			const response = await axios({
 				method: "get",
 				url: "http://localhost:8000/users",
-			}).then(data => setUsers(data.data.user))
+			}).then((data) => setUsers(data.data.user));
 		};
 		getUsers();
 	}, []);
-    
 
 	return (
 		<div className="card border-0 px-2 card-css">

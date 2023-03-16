@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import "./FollowBtn.css";
 
 function FollowBtn({ user }) {
   let userFollowedByLoggedUser = false;
