@@ -56,7 +56,7 @@ function Home() {
 									<Tweet
 										likes={tweet.likes.length}
 										content={tweet.content}
-										user={tweet.author.username}
+										user={tweet.author}
 									/>
 								)
 						)}

@@ -1,9 +1,7 @@
 import React from "react";
 import Style from "../Tweet/Tweet.module.css";
 
-function Tweet({ content, user ,likes }) {
-    
-  
+function Tweet({ content, user, likes }) {
 	return (
 		<div className="border-bottom border-top w-100">
 			<div className="my-3">
@@ -13,7 +11,7 @@ function Tweet({ content, user ,likes }) {
 							<div className="d-flex justify-content-center">
 								<img
 									className="tiny-pic-profile"
-									src="<%=tweetAuthor.author.photoProfile%>"
+									src={`${user.photoProfile}`}
 									alt=""
 									srcset=""
 								/>
@@ -21,9 +19,11 @@ function Tweet({ content, user ,likes }) {
 						</div>
 						<div className="col">
 							<h5 className="inline-b fw-semibold mb-1">
-								{user}
+								{user.username}
 							</h5>
-							<p className="inline-b font-grey mb-1">@{user}</p>
+							<p className="inline-b font-grey mb-1">
+								@{user.username}
+							</p>
 							<span>•</span>
 							<p className="inline-b font-grey mb-1"> ago</p>
 							<p className="card-text">{content}</p>
