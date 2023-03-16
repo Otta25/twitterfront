@@ -41,6 +41,9 @@ function Home() {
 		getTweets();
 	}, []);
 
+ console.log(tweets)
+ console.log(user)
+
 	return (
 		<>
 			<div className="container-fluid">
@@ -52,16 +55,8 @@ function Home() {
 
 					<div id="main-home-container" className="col-9 col-lg-5">
 						<WriteTweet></WriteTweet>
-						{tweets.map(
-							(tweet) =>
-								tweet.author._id === user._id && (
-									<Tweet
-										
-										user={tweet.author.username}
-										tweet={tweet}
-									/>
-								)
-						)}
+						{tweets.map((tweet) => tweet.author._id === user._id || user.following.includes(tweet.author._id)  && (
+									<Tweet user={tweet.author} tweet={tweet}/>))}
 					</div>
 
 					<div className="d-none d-lg-block col-lg-2 border-start">
