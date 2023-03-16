@@ -10,13 +10,13 @@ function WhoToFollow() {
 		const getUsers = async () => {
 			const response = await axios({
 				method: "get",
-				url: "http://localhost:8000/users/",
-			});
-			setUsers(response.data.user);
+				url: "http://localhost:8000/users",
+			}).then(data => setUsers(data.data.user))
 		};
 		getUsers();
 	}, []);
-
+    
+	console.log(users)
 	return (
 		<div className="card border-0 px-2 card-css">
 			<ul className="list-group list-group-flush container">
