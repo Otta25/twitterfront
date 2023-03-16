@@ -16,14 +16,14 @@ function WhoToFollow() {
 		getUsers();
 	}, []);
     
-	console.log(users)
+
 	return (
 		<div className="card border-0 px-2 card-css">
 			<ul className="list-group list-group-flush container">
 				<li className="p-3">
 					<h4 className="fw-bolder">Who to follow</h4>
 				</li>
-				{users.slice(5).map((user) => (
+				{users.slice(0,5).map((user) => (
 					<UserToFollow user={user} />
 				))}
 			</ul>

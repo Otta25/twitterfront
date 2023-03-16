@@ -8,19 +8,19 @@ function UserToFollow({ user }) {
 					<div className="col-2 pe-5">
 						<img
 							className="tiny-pic-profile"
-							src="<%=user.photoProfile%>"
+							src={user.photoProfile}
 							alt=""
 						/>
 					</div>
 					<div className="col-5">
 						<a
-							href="/usuarios/<%=user.username%>"
+							href={"/users/"+user.username}
 							className="d-block text-truncate mb-0 fw-bold text-dark"
 						>
-							User Full Name
+							{user.username}
 						</a>
 						<p className="mb-0 font-grey fs-6 text-truncate">
-							@username
+							@{user.username}
 						</p>
 					</div>
 					<FollowBtn user={user} />
