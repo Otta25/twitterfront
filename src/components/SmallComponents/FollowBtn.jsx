@@ -15,9 +15,8 @@ function FollowBtn({ user }) {
         method: "get",
         url: "http://localhost:8000",
       });
-      console.log(response.data.following);
+
       setLoggedUser(response.data);
-      console.log(user);
     };
     getLoggedUser();
   }, []);
@@ -25,9 +24,8 @@ function FollowBtn({ user }) {
   useEffect(() => {
     if (typeof loggedUser.following === "Array") {
       userFollowedByLoggedUser = loggedUser.following.includes(user);
-    } 
+    }
   }, [loggedUser]);
-
 
   if (!userFollowedByLoggedUser) {
     return (

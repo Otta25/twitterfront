@@ -10,10 +10,9 @@ function Profile() {
   const token = useSelector((state) => state.token);
   const [profile, setProfile] = useState([]);
   const [tweets, setTweets] = useState([]);
-  const [followersNumber ,setFollowersNumber] =useState(0)
-  const [followingNumber ,setFollowingNumber] =useState(0)
-  const {id} = useParams()
-
+  const [followersNumber, setFollowersNumber] = useState(0);
+  const [followingNumber, setFollowingNumber] = useState(0);
+  const { id } = useParams();
 
   useEffect(() => {
     const getProfileData = async () => {
@@ -24,15 +23,11 @@ function Profile() {
       });
       setProfile(response.data.data.user);
       setTweets(response.data.data.tweets);
-      setFollowersNumber(response.data.data.user.followers.length)
-      setFollowingNumber(response.data.data.user.following.length)
-      console.log(response.data.data)
+      setFollowersNumber(response.data.data.user.followers.length);
+      setFollowingNumber(response.data.data.user.following.length);
     };
     getProfileData();
   }, []);
-
-
-console.log(tweets)
 
   return (
     <>
@@ -44,7 +39,11 @@ console.log(tweets)
           </div>
           <div className="col-9 col-lg-5 px-0">
             <div id="blue-div">
-              <img src={profile.photoProfile} alt="foto-perfil" id="profile-Photo" />
+              <img
+                src={profile.photoProfile}
+                alt="foto-perfil"
+                id="profile-Photo"
+              />
               <button id="follow-btn">Follow</button>
             </div>
             <div id="white-div">
@@ -57,12 +56,14 @@ console.log(tweets)
               <div>
                 <span>{followingNumber}</span>
                 <span className="gray-letter ms-1 me-2">Following</span>
-                <span>{ followersNumber}</span>
+                <span>{followersNumber}</span>
                 <span className="gray-letter ms-1 me-2">Followers</span>
               </div>
             </div>
             <div className="tweet-container">
-              {tweets.map(tweet => <Tweet tweet={tweet} user={tweet.author} />)}
+              {tweets.map((tweet) => (
+                <Tweet tweet={tweet} user={tweet.author} />
+              ))}
             </div>
           </div>
         </div>
