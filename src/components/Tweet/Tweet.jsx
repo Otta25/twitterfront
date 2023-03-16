@@ -2,31 +2,35 @@ import Style from "../Tweet/Tweet.module.css";
 import React, { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 function Tweet({ tweet, user }) {
+	const token = useSelector((state) => state.token);
 	const [likes, setLikes] = useState(tweet.likes);
 	const [liked, setLiked] = useState(likes.includes(user));
 	const dispatch = useDispatch();
-
+  
 	const handleLike = async () => {
-		console.log("sape");
-		console.log(tweet._id);
-
-		if (liked) {
-			const response = await axios.delete(
-				`http://localhost:8000/tweets/${tweet._id}/likes`,
-				{ data: { user } }
-			);
-			dispatch(setLikes(response.data.likes));
-			setLiked(false);
-		} else {
-			const response = await axios.post(
-				`http://localhost:8000/tweets/${tweet._id}/likes`,
-				{ data: { user } }
-			);
-			dispatch(setLikes(response.data.likes));
-			setLiked(true);
-		}
+	  console.log("sape");
+	  console.log(tweet._id);
+  
+	  if (liked) {
+		const response = await axios({
+		  headers: { Authorization: `Bearer ${token}` },
+		  method: "delete",
+		  url: `http://localhost:8000/tweets/${tweet._id}/likes`,
+		});
+		setLikes(response.data.likes);
+		setLiked(false);
+	  } else {
+		const response = await axios({
+		  headers: { Authorization: `Bearer ${token}` },
+		  method: "post",
+		  url: `http://localhost:8000/tweets/${tweet._id}/likes`,
+		});
+		setLikes(response.data.likes);
+		setLiked(true);
+	  }
 	};
 
 	return (
