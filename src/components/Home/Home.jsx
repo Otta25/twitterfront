@@ -4,10 +4,10 @@ import React from "react";
 import { useSelector } from "react-redux";
 import "./Home.css";
 import Tweet from "../Tweet/Tweet";
-import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import WhoToFollow from "../SideCards/WhoToFollow";
 import WhatsHappening from "../SideCards/WhatsHappening";
+import WriteTweet from "../WriteTweet/WriteTweet";
 
 function Home() {
   const token = useSelector((state) => state.token);
@@ -32,7 +32,7 @@ function Home() {
   useEffect(() => {
     const getTweets = async () => {
       const response = await axios({
-        // headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}` },
         method: "get",
         url: "http://localhost:8000/tweets",
       });
