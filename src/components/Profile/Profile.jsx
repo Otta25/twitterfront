@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import FollowBtn from "../SmallComponents/FollowBtn";
+import { NavLink } from "react-router-dom";
 
 function Profile() {
   const token = useSelector((state) => state.token);
@@ -103,10 +104,14 @@ function Profile() {
                 <span>{profile.bio}</span>
               </div>
               <div>
+              <NavLink to={`following `}>
                 <span>{followingNumber}</span>
                 <span className="gray-letter ms-1 me-2">Following</span>
-                <span>{followersNumber}</span>
+              </NavLink>
+              <NavLink to={`followers `}>
+                <span>{ followersNumber}</span>
                 <span className="gray-letter ms-1 me-2">Followers</span>
+              </NavLink>
               </div>
             </div>
             <div className="tweet-container">

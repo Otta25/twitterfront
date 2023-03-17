@@ -7,6 +7,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
+import Following from "./components/followAndFollowing/Following";
+import Followers from "./components/followAndFollowing/Followers";
 
 function App() {
 	const token = useSelector((state) => state.token);
@@ -19,6 +21,8 @@ function App() {
 				<Route path="http://localhost:8000/users" element={<Login />} />
 				<Route path="/" element={token ? <Home /> : <Login />} />
 				<Route path="/users/:id" element={<Profile />} />
+				<Route path="users/:id/following" element={<Following />}  />
+        		<Route path="users/:id/followers" element={<Followers />}  />
 			</Routes>
 		</div>
 	);
