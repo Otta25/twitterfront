@@ -7,6 +7,8 @@ import { NavLink } from "react-router-dom";
 
 import "./Followers.css"
 
+import { NavLink } from "react-router-dom";
+
 import ToFollow from "./ToFollow"
 
 import Navbar from "../Navbar/Navbar";
