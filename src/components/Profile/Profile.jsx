@@ -112,7 +112,7 @@ function Profile() {
             <div className="tweet-container">
               {tweets.map(
                 (tweet) =>
-                  user._id === tweet.author._id && (
+                  followingsAndMyProfile.includes(tweet.author._id) && (
                     <Tweet tweet={tweet} user={tweet.author} />
                   )
               )}

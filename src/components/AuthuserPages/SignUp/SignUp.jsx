@@ -1,9 +1,7 @@
 import React from "react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { createToken } from "../../../reducers/tokenReducer";
-import { useSelector } from "react-redux";
-import { useNavigate, Link,Navigate } from "react-router-dom";
+
+import { useNavigate, Link } from "react-router-dom";
 import "./SignUp.css";
 
 function SignUp() {
@@ -13,13 +11,17 @@ function SignUp() {
 	const [inputUsername, setInputUsername] = React.useState("");
 	const [inputPassword, setInputPassword] = React.useState("");
 
-	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const handleSubmit = async (event) => {
-	  const response = await axios({
+		event.preventDefault();
+		console.log("estoy acá");
+		await axios({
 			method: "post",
 			url: "http://localhost:8000/users",
+			headers: {
+				"Content-Type": "multipart/form-data",
+			},
 			data: {
 				firstname: inputFirstName,
 				lastname: inputLastName,
@@ -27,8 +29,8 @@ function SignUp() {
 				username: inputUsername,
 				password: inputPassword,
 			},
-		});	
-		navigate('/login')
+		});
+		navigate("/login");
 	};
 
 	return (
@@ -47,7 +49,6 @@ function SignUp() {
 							<p>Create and account and start using Twitter</p>
 							<form
 								action="http://localhost:8000/users"
-								encType="multipart/form-data"
 								method="post"
 								class="sign-up-form"
 								onSubmit={handleSubmit}
