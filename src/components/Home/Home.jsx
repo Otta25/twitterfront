@@ -9,6 +9,7 @@ import WhoToFollow from "../SideCards/WhoToFollow";
 import WhatsHappening from "../SideCards/WhatsHappening";
 import WriteTweet from "../WriteTweet/WriteTweet";
 
+
 function Home() {
   const token = useSelector((state) => state.token);
   const userData = useSelector((state) => state.user);
