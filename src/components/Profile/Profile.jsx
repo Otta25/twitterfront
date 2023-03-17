@@ -58,8 +58,6 @@ function Profile() {
 		setRefresh((prev) => !prev);
 	}
 
-	console.log(tweets);
-	console.log(userData);
 	return (
 		<>
 			<div className="container-fluid">
@@ -120,7 +118,7 @@ function Profile() {
 						<div className="tweet-container">
 							{tweets.map(
 								(tweet) =>
-									userData.id === tweet.author._id && (
+									profile._id === tweet.author._id && (
 										<Tweet
 											tweet={tweet}
 											user={tweet.author}
