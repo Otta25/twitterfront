@@ -7,6 +7,8 @@ import axios from "axios";
 import { useParams } from "react-router";
 import FollowBtn from "../SmallComponents/FollowBtn";
 import { NavLink } from "react-router-dom";
+import WhoToFollow from "../SideCards/WhoToFollow";
+import WhatsHappening from "../SideCards/WhatsHappening";
 
 function Profile() {
   const token = useSelector((state) => state.token);
@@ -117,6 +119,13 @@ function Profile() {
                   )
               )}
             </div>
+          </div>
+          <div className="col-1 ms-5">
+            <div className="mt-3 mb-5">
+              {" "}
+              <WhatsHappening />
+            </div>
+            <WhoToFollow />
           </div>
         </div>
       </div>
