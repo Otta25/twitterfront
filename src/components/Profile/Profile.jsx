@@ -58,86 +58,81 @@ function Profile() {
 		setRefresh((prev) => !prev);
 	}
 
-  console.log(tweets);
-  console.log(userDates.id);
-  return (
-    <>
-      <div className="container-fluid">
-        <div className="row">
-          <div className="d-none d-xl-block col-lg-1"></div>
-          <div className="col-2 border-end">
-            <Navbar></Navbar>
-          </div>
-          <div className="col-9 col-lg-5 px-0">
-            <div className="d-flex justify-content-between mx-3 ">
-              <img
-                src={profile.photoProfile}
-                alt="foto-perfil"
-                id="profile-Photo"
-                className="d-block"
-              />
-              {user._id === profile._id ? (
-                <></>
-              ) : profile.followers.includes(user._id) ? (
-                <button onClick={() => unFollow()} >
-                  Unfollow
-                </button>
-              ) : (
-                <button onClick={() => follow()} >
-                  Follow
-                </button>
-              )}
-            </div>
-            <div >
-            <div class="container text-center">
-                  <div class="row">
-                    <div class="col">
-                      <h5>
-                        {profile.firstname} {profile.lastname}
-                      </h5>
-                      <p>
-                        @{profile.username}
-                      </p>
-                      
-                    </div>
-                    <div class="col">
-                    <div>
-                <NavLink to={`following `}>
-                  <span>{followingNumber}</span>
-                  <span className="gray-letter ms-1 me-2">Following</span>
-                </NavLink>
-                <NavLink to={`followers `}>
-                  <span>{followersNumber}</span>
-                  <span className="gray-letter ms-1 me-2">Followers</span>
-                </NavLink>
-              </div>
-                    </div>
-                    
-                  </div>
-              </div>
-              <span>{profile.bio}</span>
-                
-              
-                
-              
-                
-                
-              
-              
-            </div>
-            <div className="tweet-container">
-              {tweets.map(
-                (tweet) =>
-                  userDates.id === tweet.author._id && (
-                    <Tweet tweet={tweet} user={tweet.author} />
-                  )
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
+	console.log(tweets);
+	console.log(userData);
+	return (
+		<>
+			<div className="container-fluid">
+				<div className="row">
+					<div className="d-none d-xl-block col-lg-1"></div>
+					<div className="col-2 border-end">
+						<Navbar></Navbar>
+					</div>
+					<div className="col-9 col-lg-5 px-0">
+						<div id="blue-div">
+							<img src={profile.photoPortada} alt="" />
+							<img
+								src={profile.photoProfile}
+								alt="foto-perfil"
+								id="profile-Photo"
+							/>
+							{userData.id === profile._id ? (
+								<></>
+							) : profile.followers.includes(userData.id) ? (
+								<button
+									onClick={() => unFollow()}
+									id="unfollow-btn"
+								>
+									Unfollow
+								</button>
+							) : (
+								<button
+									onClick={() => follow()}
+									id="follow-btn"
+								>
+									Follow
+								</button>
+							)}
+						</div>
+						<div id="white-div">
+							<div>
+								<h5>
+									{profile.firstname} {profile.lastname}
+								</h5>
+								<p>@{profile.username}</p>
+								<span>{profile.bio}</span>
+							</div>
+							<div>
+								<NavLink to={`following `}>
+									<span>{followingNumber}</span>
+									<span className="gray-letter ms-1 me-2">
+										Following
+									</span>
+								</NavLink>
+								<NavLink to={`followers `}>
+									<span>{followersNumber}</span>
+									<span className="gray-letter ms-1 me-2">
+										Followers
+									</span>
+								</NavLink>
+							</div>
+						</div>
+						<div className="tweet-container">
+							{tweets.map(
+								(tweet) =>
+									userData.id === tweet.author._id && (
+										<Tweet
+											tweet={tweet}
+											user={tweet.author}
+										/>
+									)
+							)}
+						</div>
+					</div>
+				</div>
+			</div>
+		</>
+	);
 }
 
 export default Profile;
