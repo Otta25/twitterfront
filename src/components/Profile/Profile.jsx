@@ -120,6 +120,7 @@ function Profile() {
               {/* {tweets.map(
                 (tweet) =>
                   followingsAndMyProfile.includes(tweet.author._id) && (
+                  user._id(tweet.author._id) && (
                     <Tweet tweet={tweet} user={tweet.author} />
                   )
               )} */}
