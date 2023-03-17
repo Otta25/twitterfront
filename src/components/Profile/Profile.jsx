@@ -106,7 +106,7 @@ function Profile() {
                       {profile.firstname} {profile.lastname}
                     </h5>
                     <p>@{profile.username}</p>
-                    <span>{profile.bio}</span>
+        
                   </div>
                 </div>
               </div>
