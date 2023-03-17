@@ -16,6 +16,24 @@ function Profile() {
   const [followingNumber, setFollowingNumber] = useState(0);
   const { id } = useParams();
   const [user, setUser] = useState([]);
+  const [isFollower, setIsFollowers] = useState(profile.followers.includes(user));
+  const [isFollowing, setIsFollowing] = useState(false);
+
+  const handleFollow = async () => {
+    if (isFollower) {
+      const response = await axios({
+        headers: { Authorization: `Bearer ${token}` },
+        method: "delete",
+        url: `http://localhost:8000/users/follow/${id}`,
+      });
+    } else {
+      const response = await axios({
+        headers: { Authorization: `Bearer ${token}` },
+        method: "post",
+        url: `http://localhost:8000/users/follow/${id}`,
+      });
+    }
+  };
 
   useEffect(() => {
     const getProfileData = async () => {
@@ -30,7 +48,7 @@ function Profile() {
       setFollowingNumber(response.data.data.user.following.length);
     };
     getProfileData();
-  }, [profile]);
+  }, []);
 
   useEffect(() => {
     const getUser = async () => {
@@ -85,12 +103,12 @@ function Profile() {
                 alt="foto-perfil"
                 id="profile-Photo"
               />
-              {profile.followers.includes(user._id) ? (
-                <button onClick={() => unFollow()} id="unfollow-btn">
+              {isFollower ? (
+                <button onClick={() => handleFollow()} id="unfollow-btn">
                   Unfollow
                 </button>
               ) : (
-                <button onClick={() => follow()} id="follow-btn">
+                <button onClick={() => handleFollow()} id="follow-btn">
                   Follow
                 </button>
               )}
@@ -104,23 +122,23 @@ function Profile() {
                 <span>{profile.bio}</span>
               </div>
               <div>
-              <NavLink to={`following `}>
-                <span>{followingNumber}</span>
-                <span className="gray-letter ms-1 me-2">Following</span>
-              </NavLink>
-              <NavLink to={`followers `}>
-                <span>{ followersNumber}</span>
-                <span className="gray-letter ms-1 me-2">Followers</span>
-              </NavLink>
+                <NavLink to={`following `}>
+                  <span>{followingNumber}</span>
+                  <span className="gray-letter ms-1 me-2">Following</span>
+                </NavLink>
+                <NavLink to={`followers `}>
+                  <span>{followersNumber}</span>
+                  <span className="gray-letter ms-1 me-2">Followers</span>
+                </NavLink>
               </div>
             </div>
             <div className="tweet-container">
-              {tweets.map(
+              {/* {tweets.map(
                 (tweet) =>
                   followingsAndMyProfile.includes(tweet.author._id) && (
                     <Tweet tweet={tweet} user={tweet.author} />
                   )
-              )}
+              )} */}
             </div>
           </div>
         </div>
