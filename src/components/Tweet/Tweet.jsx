@@ -5,15 +5,22 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import "./Tweet.css";
 import { Link } from "react-router-dom";
+import { formatDistance, subDays } from "date-fns";
+import moment from "moment";
 
 function Tweet({ tweet, user }) {
   const token = useSelector((state) => state.token);
   const [likes, setLikes] = useState(tweet.likes);
   const [liked, setLiked] = useState(likes.includes(user));
   const [redHeart, setRedHeart] = useState(false);
-  const dispatch = useDispatch();
   const userData = useSelector((state) => state.user);
-  console.log(userData.id);
+
+  const formatDate = moment
+    .utc(tweet.date)
+    .local()
+    .startOf("seconds")
+    .fromNow();
+
   const handleLike = async () => {
     setRedHeart(!redHeart);
     if (liked) {
@@ -59,18 +66,19 @@ function Tweet({ tweet, user }) {
               </div>
             </div>
             <div class="col">
-              <h5 class="inline-b fw-semibold mb-1 me-1">
+              <h5 class="inline-b fw-semibold me-1">
                 <Link
                   to={"/users/" + user._id}
                   href={"/users/" + user.username}
-                  className="d-block text-truncate mb-0 fw-bold text-dark text-decoration-none"
+                  className="text-truncate fw-bold text-dark text-decoration-none"
                 >
                   {user.firstname} {user.lastname}
                 </Link>
               </h5>
-              <p class="inline-b font-grey mb-1">@{user.username}</p>
-              <span>•</span>
-              <p class="inline-b font-grey mb-1"> ago</p>
+              <p class="inline-b font-grey mb-2 ms-3">@{user.username}</p>
+              <span className="font-grey ms-3 me-1">•</span>
+              <p class="inline-b font-grey mb-2">{formatDate}</p>
+
               <p class="card-text">{tweet.content}</p>
               <div class="d-flex justify-content-between">
                 <div>
