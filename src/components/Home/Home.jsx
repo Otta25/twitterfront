@@ -42,12 +42,20 @@ function Home() {
 
 					<div id="main-home-container" className="col-9 col-lg-5">
 						<WriteTweet tweets={tweets} setTweets={setTweets} />
-						{tweets.map(
-							(tweet) =>
-								idsFollowingsAndProfile.includes(
-									tweet.author
-								) && <Tweet user={tweet.author} tweet={tweet} />
-						)}
+						{console.log(tweets)}
+						{tweets
+							.slice(0, 20)
+							.map(
+								(tweet) =>
+									idsFollowingsAndProfile.includes(
+										tweet.author._id
+									) && (
+										<Tweet
+											user={tweet.author}
+											tweet={tweet}
+										/>
+									)
+							)}
 					</div>
 
 					<div className="d-none d-lg-block col-lg-2 border-start">
