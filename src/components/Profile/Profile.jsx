@@ -16,6 +16,7 @@ function Profile() {
   const [followingNumber, setFollowingNumber] = useState(0);
   const { id } = useParams();
   const [user, setUser] = useState([]);
+  const[refresh, setRefresh]=useState(false);
 
   useEffect(() => {
     const getProfileData = async () => {
@@ -30,7 +31,7 @@ function Profile() {
       setFollowingNumber(response.data.data.user.following.length);
     };
     getProfileData();
-  }, [profile]);
+  }, [refresh]);
 
   useEffect(() => {
     const getUser = async () => {
@@ -54,6 +55,7 @@ function Profile() {
     };
     followUser();
     setFollowersNumber(followersNumber + 1);
+    setRefresh(prev => !prev)
   }
 
   function unFollow() {
@@ -65,6 +67,7 @@ function Profile() {
       });
     };
     unFollowUser();
+    setRefresh(prev => !prev)
   }
 
   console.log(tweets);
@@ -85,7 +88,8 @@ function Profile() {
                 alt="foto-perfil"
                 id="profile-Photo"
               />
-              {profile.followers.includes(user._id) ? (
+              {user._id === profile._id ? <></>:
+              profile.followers.includes(user._id) ? (
                 <button onClick={() => unFollow()} id="unfollow-btn">
                   Unfollow
                 </button>
@@ -93,7 +97,8 @@ function Profile() {
                 <button onClick={() => follow()} id="follow-btn">
                   Follow
                 </button>
-              )}
+              )
+              }
             </div>
             <div id="white-div">
               <div>
@@ -115,12 +120,12 @@ function Profile() {
               </div>
             </div>
             <div className="tweet-container">
-              {tweets.map(
+              {/* {tweets.map(
                 (tweet) =>
-                  followingsAndMyProfile.includes(tweet.author._id) && (
+                  tweet.includes(tweet.author) && (
                     <Tweet tweet={tweet} user={tweet.author} />
                   )
-              )}
+              )} */}
             </div>
           </div>
         </div>

@@ -33,9 +33,11 @@ function Home() {
     getUser();
   }, []);
 
+
+  
   /////////////////////////////////
   const [tweets, setTweets] = React.useState([]);
-
+  
   useEffect(() => {
     const getTweets = async () => {
       const response = await axios({
@@ -48,6 +50,8 @@ function Home() {
     getTweets();
   }, []);
 
+
+  
   return (
     <>
       <div className="container-fluid">
@@ -61,7 +65,7 @@ function Home() {
             <WriteTweet></WriteTweet>
             {tweets.map(
               (tweet) =>
-                idsFollowingsAndProfile.includes(tweet.author._id) && (
+                idsFollowingsAndProfile.includes(tweet.author) && (
                   <Tweet user={tweet.author} tweet={tweet} />
                 )
             )}
