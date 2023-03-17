@@ -16,7 +16,9 @@ function Profile() {
   const [followingNumber, setFollowingNumber] = useState(0);
   const { id } = useParams();
   const [user, setUser] = useState([]);
-  const [isFollower, setIsFollowers] = useState(profile.followers.includes(user));
+  const [isFollower, setIsFollowers] = useState(
+    profile.followers.includes(user)
+  );
   const [isFollowing, setIsFollowing] = useState(false);
 
   const handleFollow = async () => {
@@ -49,7 +51,6 @@ function Profile() {
     };
     getProfileData();
   }, [profile]);
-  }, []);
 
   useEffect(() => {
     const getUser = async () => {

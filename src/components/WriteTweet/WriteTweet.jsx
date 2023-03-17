@@ -3,13 +3,13 @@ import axios from "axios";
 import React from "react";
 import { useSelector } from "react-redux";
 
-function WriteTweet() {
+function WriteTweet({ setTweets, tweets }) {
   const token = useSelector((state) => state.token);
   const [content, setContent] = React.useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await axios({
+    const response = await axios({
       headers: { Authorization: `Bearer ${token}` },
       method: "post",
       url: "http://localhost:8000/tweets",
@@ -17,9 +17,9 @@ function WriteTweet() {
         content: content,
       },
     });
-  };
 
-  console.log(content);
+    setTweets([response.data]);
+  };
 
   return (
     <div class="border-bottom p-3">
