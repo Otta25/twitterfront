@@ -5,12 +5,10 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-
-
 function Navbar() {
 	const token = useSelector((state) => state.token);
 	const dispatch = useDispatch();
-	const[user,setUser]=useState([])
+	const [user, setUser] = useState([]);
 
 	useEffect(() => {
 		const getUser = async () => {
@@ -24,8 +22,6 @@ function Navbar() {
 		getUser();
 	}, []);
 
-	
-
 	return (
 		<div id="main-navbar">
 			<nav className="">
@@ -33,14 +29,14 @@ function Navbar() {
 					<li id="logo-twitter" className="mt-2 mt-lg-0">
 						<img src="../img/logoHome.svg" alt="" />
 					</li>
-					<a href="/">
+					<Link to="/">
 						<li className="fs-6">
 							<img src="../img/homeIcon.svg" alt="" />
-							<span className="fs-6 d-md-none d-lg-inline-block">
+							<span className="fs-6 d-md-none d-lg-inline-block text-decoration-none">
 								Home
 							</span>
 						</li>
-					</a>
+					</Link>
 					<li>
 						<svg
 							viewBox="0 0 24 24"
@@ -111,7 +107,10 @@ function Navbar() {
 							Lists
 						</span>
 					</li>
-					<a href={'/users/' + user._id}>
+					<Link
+						to={"/users/" + user._id}
+						className="text-decoration-none"
+					>
 						<li>
 							<svg
 								viewBox="0 0 24 24"
@@ -126,7 +125,7 @@ function Navbar() {
 								Profile
 							</span>
 						</li>
-					</a>
+					</Link>
 					<li>
 						<svg
 							viewBox="0 0 24 24"
@@ -148,16 +147,16 @@ function Navbar() {
 					</li>
 				</ul>
 			</nav>
-			<a
+			<Link
 				onClick={() => {
 					dispatch(createToken(""));
 				}}
 				id="logout-btn"
-				className="btn btn-danger rounded-pill mt-1 text-white"
-				href="/"
+				className="btn btn-danger rounded-pill mt-1 text-white text-decoration-none"
+				to="/"
 			>
 				Log Out
-			</a>
+			</Link>
 		</div>
 	);
 }

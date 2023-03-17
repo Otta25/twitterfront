@@ -14,9 +14,10 @@ function UserToFollow({ user }) {
 						/>
 					</div>
 					<div className="col-5">
-						<Link to={'/users/'+ user._id}
-							href={"/users/"+user.username}
-							className="d-block text-truncate mb-0 fw-bold text-dark"
+						<Link
+							to={"/users/" + user._id}
+							href={"/users/" + user.username}
+							className="d-block text-truncate mb-0 fw-bold text-dark text-decoration-none"
 						>
 							{user.username}
 						</Link>
@@ -24,7 +25,7 @@ function UserToFollow({ user }) {
 							@{user.username}
 						</p>
 					</div>
-					
+
 					<div className="col-4 ps-1">
 						<FollowBtn user={user} />
 					</div>
