@@ -2,51 +2,52 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import React from "react";
 import { useSelector } from "react-redux";
-import "./Home.css";
+import { useParams } from "react-router";
+
 import Tweet from "../Tweet/Tweet";
 import Navbar from "../Navbar/Navbar";
 import WhoToFollow from "../SideCards/WhoToFollow";
 import WhatsHappening from "../SideCards/WhatsHappening";
 import WriteTweet from "../WriteTweet/WriteTweet";
+import ToFollow from "./ToFollow";
 
-function Home() {
+
+
+function Following() {
   const token = useSelector((state) => state.token);
+	const { id } = useParams();
+	const [user, setUser] = useState([]);
 
-  const [user, setUser] = useState([]);
-  const [idsFollowingsAndProfile, setIdsFollowingsAndProfile] = React.useState(
-    []
-  );
+	useEffect(() => {
+		const getUser = async () => {
+			const response = await axios({
+				headers: { Authorization: `Bearer ${token}` },
+				method: "get",
+				url: "http://localhost:8000",
+			});
+			setUser(response.data);
+		};
+		getUser();
+	}, []);
+
+	/////////////////////////////////
+	const [following, setFollowing] = React.useState([]);
 
   useEffect(() => {
-    const getUser = async () => {
+    const getFollowing = async () => {
       const response = await axios({
         headers: { Authorization: `Bearer ${token}` },
         method: "get",
-        url: "http://localhost:8000",
+        url: `http://localhost:8000/users/${id}/following`,
       });
-      setUser(response.data);
-      setIdsFollowingsAndProfile([
-        ...response.data.following,
-        response.data._id,
-      ]);
+      setFollowing(response.data);
     };
-    getUser();
-  }, []);
+    getFollowing();
+  }, []);;
+  
 
   /////////////////////////////////
-  const [tweets, setTweets] = React.useState([]);
-
-  useEffect(() => {
-    const getTweets = async () => {
-      const response = await axios({
-        headers: { Authorization: `Bearer ${token}` },
-        method: "get",
-        url: "http://localhost:8000/tweets",
-      });
-      setTweets(response.data);
-    };
-    getTweets();
-  }, []);
+  
 
   return (
     <>
@@ -56,17 +57,11 @@ function Home() {
           <div className="col-2 border-end">
             <Navbar></Navbar>
           </div>
-
           <div id="main-home-container" className="col-9 col-lg-5">
-            <WriteTweet></WriteTweet>
-            {tweets.map(
-              (tweet) =>
-                idsFollowingsAndProfile.includes(tweet.author._id) && (
-                  <Tweet user={tweet.author} tweet={tweet} />
-                )
-            )}
-          </div>
-
+           {following.map((user) => (
+            <ToFollow user={user}></ToFollow>
+             ))}
+        	</div>
           <div className="d-none d-lg-block col-lg-2 border-start">
             <WhatsHappening /> <br /> <WhoToFollow />
           </div>
@@ -77,4 +72,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Following;

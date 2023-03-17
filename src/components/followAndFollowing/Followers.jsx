@@ -2,51 +2,40 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import React from "react";
 import { useSelector } from "react-redux";
-import "./Home.css";
+import { useParams } from "react-router";
+
+import ToFollow from "./ToFollow"
 import Tweet from "../Tweet/Tweet";
 import Navbar from "../Navbar/Navbar";
 import WhoToFollow from "../SideCards/WhoToFollow";
 import WhatsHappening from "../SideCards/WhatsHappening";
 import WriteTweet from "../WriteTweet/WriteTweet";
 
-function Home() {
+
+function Followers() {
   const token = useSelector((state) => state.token);
-
+  const { id } = useParams();
   const [user, setUser] = useState([]);
-  const [idsFollowingsAndProfile, setIdsFollowingsAndProfile] = React.useState(
-    []
-  );
 
-  useEffect(() => {
-    const getUser = async () => {
-      const response = await axios({
-        headers: { Authorization: `Bearer ${token}` },
-        method: "get",
-        url: "http://localhost:8000",
-      });
-      setUser(response.data);
-      setIdsFollowingsAndProfile([
-        ...response.data.following,
-        response.data._id,
-      ]);
-    };
-    getUser();
-  }, []);
+	
 
   /////////////////////////////////
-  const [tweets, setTweets] = React.useState([]);
+  const [followers, setFollowers] = React.useState([]);
 
   useEffect(() => {
-    const getTweets = async () => {
+    const getFollowers = async () => {
       const response = await axios({
         headers: { Authorization: `Bearer ${token}` },
         method: "get",
-        url: "http://localhost:8000/tweets",
+        url: `http://localhost:8000/users/${id}/followers`,
       });
-      setTweets(response.data);
+      setFollowers(response.data);
     };
-    getTweets();
+    getFollowers();
   }, []);
+
+  //const idsFollowingsAndProfile = [...user.following, user._id];
+  //   console.log(idsFollowingsAndProfile);
 
   return (
     <>
@@ -56,17 +45,11 @@ function Home() {
           <div className="col-2 border-end">
             <Navbar></Navbar>
           </div>
-
           <div id="main-home-container" className="col-9 col-lg-5">
-            <WriteTweet></WriteTweet>
-            {tweets.map(
-              (tweet) =>
-                idsFollowingsAndProfile.includes(tweet.author._id) && (
-                  <Tweet user={tweet.author} tweet={tweet} />
-                )
-            )}
-          </div>
-
+           {followers.map((user) => (
+            <ToFollow user = {user}></ToFollow>
+             ))}
+             </div>
           <div className="d-none d-lg-block col-lg-2 border-start">
             <WhatsHappening /> <br /> <WhoToFollow />
           </div>
@@ -77,4 +60,5 @@ function Home() {
   );
 }
 
-export default Home;
+export default Followers;
+ 
