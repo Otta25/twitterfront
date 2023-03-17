@@ -4,6 +4,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import "./Tweet.css";
+import { Link } from "react-router-dom";
 
 function Tweet({ tweet, user }) {
   const token = useSelector((state) => state.token);
@@ -58,7 +59,15 @@ function Tweet({ tweet, user }) {
               </div>
             </div>
             <div class="col">
-              <h5 class="inline-b fw-semibold mb-1">{user.firstname}</h5>
+              <h5 class="inline-b fw-semibold mb-1 me-1">
+                <Link
+                  to={"/users/" + user._id}
+                  href={"/users/" + user.username}
+                  className="d-block text-truncate mb-0 fw-bold text-dark text-decoration-none"
+                >
+                  {user.firstname} {user.lastname}
+                </Link>
+              </h5>
               <p class="inline-b font-grey mb-1">@{user.username}</p>
               <span>•</span>
               <p class="inline-b font-grey mb-1"> ago</p>
