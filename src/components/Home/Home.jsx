@@ -13,6 +13,9 @@ function Home() {
   const token = useSelector((state) => state.token);
 
   const [user, setUser] = useState([]);
+  const [idsFollowingsAndProfile, setIdsFollowingsAndProfile] = React.useState(
+    []
+  );
 
   useEffect(() => {
     const getUser = async () => {
@@ -22,13 +25,16 @@ function Home() {
         url: "http://localhost:8000",
       });
       setUser(response.data);
+      setIdsFollowingsAndProfile([
+        ...response.data.following,
+        response.data._id,
+      ]);
     };
     getUser();
   }, []);
 
   /////////////////////////////////
   const [tweets, setTweets] = React.useState([]);
-
 
   useEffect(() => {
     const getTweets = async () => {
@@ -41,9 +47,6 @@ function Home() {
     };
     getTweets();
   }, []);
-
-  const idsFollowingsAndProfile = [user.following, user._id];
-  //   console.log(idsFollowingsAndProfile);
 
   return (
     <>

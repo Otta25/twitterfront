@@ -15,9 +15,7 @@ function Profile() {
   const [followingNumber, setFollowingNumber] = useState(0);
   const { id } = useParams();
   const [user, setUser] = useState([]);
-  const [followingsAndMyProfile, setFollowingsAndMyProfile] = React.useState(
-    []
-  );
+
   useEffect(() => {
     const getProfileData = async () => {
       const response = await axios({
@@ -29,48 +27,44 @@ function Profile() {
       setTweets(response.data.data.tweets);
       setFollowersNumber(response.data.data.user.followers.length);
       setFollowingNumber(response.data.data.user.following.length);
-      setFollowingsAndMyProfile([
-        ...response.data.data.user.following,
-        response.data.data.user._id,
-      ]);
     };
     getProfileData();
   }, [profile]);
 
-useEffect(() => {
-  const getUser = async () => {
-    const response = await axios({
-      headers: { Authorization: `Bearer ${token}` },
-      method: "get",
-      url: "http://localhost:8000",
-    });
-    setUser(response.data);
-  };
-  getUser();
-}, []);
+  useEffect(() => {
+    const getUser = async () => {
+      const response = await axios({
+        headers: { Authorization: `Bearer ${token}` },
+        method: "get",
+        url: "http://localhost:8000",
+      });
+      setUser(response.data);
+    };
+    getUser();
+  }, []);
 
-function follow(){
-  const followUser = async () => {
-    const response = await axios({
-      headers: { Authorization: `Bearer ${token}` },
-      method: "post",
-      url: `http://localhost:8000/users/follow/${profile._id}`,
-    });
-  };
-  followUser();
-  setFollowersNumber(followersNumber+1)
-}
+  function follow() {
+    const followUser = async () => {
+      const response = await axios({
+        headers: { Authorization: `Bearer ${token}` },
+        method: "post",
+        url: `http://localhost:8000/users/follow/${profile._id}`,
+      });
+    };
+    followUser();
+    setFollowersNumber(followersNumber + 1);
+  }
 
-function unFollow(){
-  const unFollowUser = async () => {
-    const response = await axios({
-      headers: { Authorization: `Bearer ${token}` },
-      method: "delete",
-      url: `http://localhost:8000/users/follow/${profile._id}`,
-    });
-  };
-  unFollowUser();
-}
+  function unFollow() {
+    const unFollowUser = async () => {
+      const response = await axios({
+        headers: { Authorization: `Bearer ${token}` },
+        method: "delete",
+        url: `http://localhost:8000/users/follow/${profile._id}`,
+      });
+    };
+    unFollowUser();
+  }
 
   console.log(tweets);
 
@@ -89,11 +83,16 @@ function unFollow(){
                 src={profile.photoProfile}
                 alt="foto-perfil"
                 id="profile-Photo"
-              /> 
-              { profile.followers.includes(user._id) ?
-                <button onClick={()=>unFollow()} id="unfollow-btn">Unfollow</button>:
-                <button onClick={()=>follow()} id="follow-btn">Follow</button>
-              }
+              />
+              {profile.followers.includes(user._id) ? (
+                <button onClick={() => unFollow()} id="unfollow-btn">
+                  Unfollow
+                </button>
+              ) : (
+                <button onClick={() => follow()} id="follow-btn">
+                  Follow
+                </button>
+              )}
             </div>
             <div id="white-div">
               <div>
@@ -113,7 +112,7 @@ function unFollow(){
             <div className="tweet-container">
               {tweets.map(
                 (tweet) =>
-                  followingsAndMyProfile.includes(tweet.author._id) && (
+                  user._id === tweet.author._id && (
                     <Tweet tweet={tweet} user={tweet.author} />
                   )
               )}
