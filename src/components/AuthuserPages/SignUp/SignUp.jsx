@@ -3,7 +3,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { createToken } from "../../../reducers/tokenReducer";
 import { useSelector } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link,Navigate } from "react-router-dom";
 import "./SignUp.css";
 
 function SignUp() {
@@ -17,8 +17,7 @@ function SignUp() {
 	const navigate = useNavigate();
 
 	const handleSubmit = async (event) => {
-		event.preventDefault();
-		await axios({
+	  const response = await axios({
 			method: "post",
 			url: "http://localhost:8000/users",
 			data: {
@@ -28,8 +27,8 @@ function SignUp() {
 				username: inputUsername,
 				password: inputPassword,
 			},
-		});
-		navigate("/login");
+		});	
+		navigate('/login')
 	};
 
 	return (
@@ -47,8 +46,8 @@ function SignUp() {
 							<h1 class="mb-2 fw-semibold fs-2">Sign Up</h1>
 							<p>Create and account and start using Twitter</p>
 							<form
-								action="/users"
-								enctype="multipart/form-data"
+								action="http://localhost:8000/users"
+								encType="multipart/form-data"
 								method="post"
 								class="sign-up-form"
 								onSubmit={handleSubmit}
