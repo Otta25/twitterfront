@@ -87,15 +87,19 @@ function Profile() {
                 alt="foto-perfil"
                 id="profile-Photo"
               />
-              {profile.followers.includes(user._id) ? (
-                <button onClick={() => unFollow()} id="unfollow-btn">
-                  Unfollow
-                </button>
-              ) : (
-                <button onClick={() => follow()} id="follow-btn">
-                  Follow
-                </button>
-              )}
+               {
+                 user._id === profile._id ? <></> :
+                 profile.followers.includes(user._id) ? (
+                   <button onClick={() => unFollow()} id="unfollow-btn">
+                     Unfollow
+                   </button>
+                 ) : (
+                   <button onClick={() => follow()} id="follow-btn">
+                     Follow
+                   </button>
+                 )
+                }
+
             </div>
             <div id="white-div">
               <div>

@@ -57,10 +57,10 @@ function Tweet({ tweet, user }) {
                 <div id="interact-icon">
                   <ul id="interaction-list">
                     <li id="like-icon">
-                      { liked ? 
-                      <div onClick={()=>handleLike()} className={Style.isActive }></div>:
-                      <div onClick={()=>handleLike()} className={redHeart ?Style.heart :Style.isActive }></div>
-                    }
+                      
+                      <div onClick={()=>handleLike()} className={!redHeart ? Style.heart : Style.isActive }></div>
+                    
+                   
 
                        <span>{likes.length}</span>
                       <span></span>
