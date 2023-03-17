@@ -29,6 +29,7 @@ function Home() {
   /////////////////////////////////
   const [tweets, setTweets] = React.useState([]);
 
+
   useEffect(() => {
     const getTweets = async () => {
       const response = await axios({
@@ -41,7 +42,7 @@ function Home() {
     getTweets();
   }, []);
 
-  const idsFollowingsAndProfile = [...user.following, user._id];
+  const idsFollowingsAndProfile = [user.following, user._id];
   //   console.log(idsFollowingsAndProfile);
 
   return (
