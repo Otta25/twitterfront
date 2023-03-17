@@ -111,7 +111,7 @@ function Navbar() {
 							Lists
 						</span>
 					</li>
-					<Link to={'/users/' + user._id}>
+					<a href={'/users/' + user._id}>
 						<li>
 							<svg
 								viewBox="0 0 24 24"
@@ -126,7 +126,7 @@ function Navbar() {
 								Profile
 							</span>
 						</li>
-					</Link>
+					</a>
 					<li>
 						<svg
 							viewBox="0 0 24 24"

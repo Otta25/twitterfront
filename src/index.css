@@ -45,6 +45,18 @@ code {
   border-radius: 20px;
 }
 
+#unfollow-btn {
+  position: relative;
+  top: 110px;
+  left: 450px;
+  width: 80px;
+  height: 30px;
+  background-color: rgb(151, 164, 169);
+  color: white;
+  border-radius: 20px;
+}
+
+
 #profile-Photo {
   width: 100px;
   height: 100px;
@@ -63,5 +75,7 @@ code {
 .gray-letter {
   color: gray;
 }
+
+
 
 /* ////////////////////////Finish Profile Component CSS ///////////////////////////////////*/
