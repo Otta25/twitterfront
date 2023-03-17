@@ -3,6 +3,7 @@ import axios from "axios";
 import React from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
+import { NavLink } from "react-router-dom";
 
 import Tweet from "../Tweet/Tweet";
 import Navbar from "../Navbar/Navbar";
@@ -58,6 +59,35 @@ function Following() {
             <Navbar></Navbar>
           </div>
           <div id="main-home-container" className="col-9 col-lg-5">
+
+          <div className="container ">
+            <h2 className="container">Perfil</h2>
+            <p className="container">@perfil</p>
+          </div>
+          <div class="container text-center">
+              <div class="row">
+                <div class="col">
+                <NavLink
+                    to={`/users/${id}/followers`}
+                    state={{ token }}
+                    className=" standard-item"
+                  >
+                    Followers
+                </NavLink>
+                </div>
+                <div class="col">
+                <NavLink
+                    to={`/users/${id}/following`}
+                    state={{ token }}
+                    className="standard-item focused-item"
+                  >
+                    Following
+                </NavLink>
+                </div>
+                
+              </div>
+            </div>
+
            {following.map((user) => (
             <ToFollow user={user}></ToFollow>
              ))}
