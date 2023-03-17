@@ -1,10 +1,30 @@
 import "./Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { createToken } from "../../reducers/tokenReducer";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+
 
 function Navbar() {
 	const token = useSelector((state) => state.token);
 	const dispatch = useDispatch();
+	const[user,setUser]=useState([])
+
+	useEffect(() => {
+		const getUser = async () => {
+			const response = await axios({
+				headers: { Authorization: `Bearer ${token}` },
+				method: "get",
+				url: "http://localhost:8000",
+			});
+			setUser(response.data);
+		};
+		getUser();
+	}, []);
+
+	
 
 	return (
 		<div id="main-navbar">
@@ -91,7 +111,7 @@ function Navbar() {
 							Lists
 						</span>
 					</li>
-					<a href="/usuarios/<%=req.user.username%>">
+					<Link to={'/users/' + user._id}>
 						<li>
 							<svg
 								viewBox="0 0 24 24"
@@ -106,7 +126,7 @@ function Navbar() {
 								Profile
 							</span>
 						</li>
-					</a>
+					</Link>
 					<li>
 						<svg
 							viewBox="0 0 24 24"
