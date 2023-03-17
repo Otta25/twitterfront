@@ -11,31 +11,13 @@ import WriteTweet from "../WriteTweet/WriteTweet";
 
 function Home() {
   const token = useSelector((state) => state.token);
+  const userDates = useSelector((state) => state.user);
 
-  const [user, setUser] = useState([]);
-  const [idsFollowingsAndProfile, setIdsFollowingsAndProfile] = React.useState(
-    []
-  );
+  const [idsFollowingsAndProfile, setIdsFollowingsAndProfile] = React.useState([
+    ...userDates.following,
+    userDates.id,
+  ]);
 
-  useEffect(() => {
-    const getUser = async () => {
-      const response = await axios({
-        headers: { Authorization: `Bearer ${token}` },
-        method: "get",
-        url: "http://localhost:8000",
-      });
-      setUser(response.data);
-      setIdsFollowingsAndProfile([
-        ...response.data.following,
-        response.data._id,
-      ]);
-    };
-    getUser();
-  }, []);
-
-
-  
-  /////////////////////////////////
   const [tweets, setTweets] = React.useState([]);
   
   useEffect(() => {
@@ -45,6 +27,7 @@ function Home() {
         method: "get",
         url: "http://localhost:8000/tweets",
       });
+
       setTweets(response.data);
     };
     getTweets();
@@ -62,7 +45,7 @@ function Home() {
           </div>
 
           <div id="main-home-container" className="col-9 col-lg-5">
-            <WriteTweet></WriteTweet>
+            <WriteTweet tweets={tweets} setTweets={setTweets} />
             {tweets.map(
               (tweet) =>
                 idsFollowingsAndProfile.includes(tweet.author) && (

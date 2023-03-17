@@ -109,14 +109,14 @@ function Profile() {
                 <span>{profile.bio}</span>
               </div>
               <div>
-              <NavLink to={`following `}>
-                <span>{followingNumber}</span>
-                <span className="gray-letter ms-1 me-2">Following</span>
-              </NavLink>
-              <NavLink to={`followers `}>
-                <span>{ followersNumber}</span>
-                <span className="gray-letter ms-1 me-2">Followers</span>
-              </NavLink>
+                <NavLink to={`following `}>
+                  <span>{followingNumber}</span>
+                  <span className="gray-letter ms-1 me-2">Following</span>
+                </NavLink>
+                <NavLink to={`followers `}>
+                  <span>{followersNumber}</span>
+                  <span className="gray-letter ms-1 me-2">Followers</span>
+                </NavLink>
               </div>
             </div>
             <div className="tweet-container">
