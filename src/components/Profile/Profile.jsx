@@ -16,26 +16,6 @@ function Profile() {
   const [followingNumber, setFollowingNumber] = useState(0);
   const { id } = useParams();
   const [user, setUser] = useState([]);
-  const [isFollower, setIsFollowers] = useState(
-    profile.followers.includes(user)
-  );
-  const [isFollowing, setIsFollowing] = useState(false);
-
-  const handleFollow = async () => {
-    if (isFollower) {
-      const response = await axios({
-        headers: { Authorization: `Bearer ${token}` },
-        method: "delete",
-        url: `http://localhost:8000/users/follow/${id}`,
-      });
-    } else {
-      const response = await axios({
-        headers: { Authorization: `Bearer ${token}` },
-        method: "post",
-        url: `http://localhost:8000/users/follow/${id}`,
-      });
-    }
-  };
 
   useEffect(() => {
     const getProfileData = async () => {
@@ -105,12 +85,12 @@ function Profile() {
                 alt="foto-perfil"
                 id="profile-Photo"
               />
-              {isFollower ? (
-                <button onClick={() => handleFollow()} id="unfollow-btn">
+              {profile.followers.includes(user._id) ? (
+                <button onClick={() => unFollow()} id="unfollow-btn">
                   Unfollow
                 </button>
               ) : (
-                <button onClick={() => handleFollow()} id="follow-btn">
+                <button onClick={() => follow()} id="follow-btn">
                   Follow
                 </button>
               )}
@@ -135,13 +115,12 @@ function Profile() {
               </div>
             </div>
             <div className="tweet-container">
-              {/* {tweets.map(
+              {tweets.map(
                 (tweet) =>
                   followingsAndMyProfile.includes(tweet.author._id) && (
-                  user._id(tweet.author._id) && (
                     <Tweet tweet={tweet} user={tweet.author} />
                   )
-              )} */}
+              )}
             </div>
           </div>
         </div>

@@ -1,7 +1,4 @@
 import Style from "../WriteTweet/WriteTweet.module.css";
-import axios from "axios";
-import React from "react";
-import { useSelector } from "react-redux";
 
 function WriteTweet({ setTweets, tweets }) {
   const token = useSelector((state) => state.token);
