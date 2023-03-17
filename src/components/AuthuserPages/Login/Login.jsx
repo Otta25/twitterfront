@@ -2,8 +2,8 @@ import React from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { createToken } from "../../../reducers/tokenReducer";
-import { useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
+import Alert from "react-bootstrap/Alert";
 import "./Login.css";
 
 function Login() {
@@ -12,18 +12,24 @@ function Login() {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
+	const [error, setError] = React.useState(null);
+
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		const response = await axios({
-			method: "post",
-			url: "http://localhost:8000/token",
-			data: {
-				username: inputUser,
-				password: inputPassword,
-			},
-		});
-		dispatch(createToken(response.data.token));
-		navigate("/");
+		try {
+			const response = await axios({
+				method: "post",
+				url: "http://localhost:8000/token",
+				data: {
+					username: inputUser,
+					password: inputPassword,
+				},
+			});
+			dispatch(createToken(response.data.token));
+			navigate("/");
+		} catch (err) {
+			setError("Credenciales incorrectas");
+		}
 	};
 
 	return (
@@ -39,6 +45,7 @@ function Login() {
 					<div className="col bg-white borders user-container">
 						<div className="container">
 							<h1 className="mb-2 fw-semibold fs-2">Log In</h1>
+
 							<p>Ready to start using Twitter?</p>
 							<form
 								action="/token"
@@ -67,6 +74,14 @@ function Login() {
 										setInputPassword(event.target.value)
 									}
 								/>
+								{error ? (
+									<Alert
+										variant="danger"
+										className="py-2 px-3"
+									>
+										{error}
+									</Alert>
+								) : null}
 								<button
 									type="submit"
 									className="btn btn-twitter"
