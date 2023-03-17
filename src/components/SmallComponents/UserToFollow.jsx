@@ -24,8 +24,10 @@ function UserToFollow({ user }) {
 							@{user.username}
 						</p>
 					</div>
-					<FollowBtn user={user} />
-					<div className="col-4 ps-1"></div>
+					
+					<div className="col-4 ps-1">
+						<FollowBtn user={user} />
+					</div>
 				</div>
 			</div>
 		</li>

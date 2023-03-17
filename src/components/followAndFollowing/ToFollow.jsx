@@ -2,7 +2,7 @@ import React from 'react'
 
 function ToFollow({user}) {
   return (
-    <div class="p-2 w-100">
+    <div class="p-2 container w-100">
     <div class="my-3">
         <div class="col">
            <div class="d-flex align-items-center ms-1">

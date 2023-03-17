@@ -3,3 +3,8 @@
     color   : black;
 
 }
+
+.focused-item{
+    border-bottom: solid 2px skyblue;
+    
+}
