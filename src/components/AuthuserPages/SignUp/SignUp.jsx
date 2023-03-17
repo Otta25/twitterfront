@@ -15,7 +15,6 @@ function SignUp() {
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		console.log("estoy acá");
 		await axios({
 			method: "post",
 			url: "http://localhost:8000/users",
@@ -34,29 +33,29 @@ function SignUp() {
 	};
 
 	return (
-		<div class="sign-form-body d-flex align-items-center">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col blueSideCol rounded-start white position-relative px-3 d-none d-lg-block">
-						<i class="bi bi-twitter fs-1"></i>
-						<h2 class="fw-semibold fs-3 position-absolute bottom-0">
+		<div className="sign-form-body d-flex align-items-center">
+			<div className="container-fluid">
+				<div className="row">
+					<div className="col blueSideCol rounded-start white position-relative px-3 d-none d-lg-block">
+						<i className="bi bi-twitter fs-1"></i>
+						<h2 className="fw-semibold fs-3 position-absolute bottom-0">
 							Hi! Welcome to Twitter Clone 👋
 						</h2>
 					</div>
-					<div class="col borders bg-white rounded-end user-container">
-						<div class="container">
-							<h1 class="mb-2 fw-semibold fs-2">Sign Up</h1>
+					<div className="col borders bg-white rounded-end user-container">
+						<div className="container">
+							<h1 className="mb-2 fw-semibold fs-2">Sign Up</h1>
 							<p>Create and account and start using Twitter</p>
 							<form
 								action="http://localhost:8000/users"
 								method="post"
-								class="sign-up-form"
+								className="sign-up-form"
 								onSubmit={handleSubmit}
 							>
 								<input
 									name="firstname"
 									type="text"
-									class="form-control"
+									className="form-control"
 									id="firstname"
 									placeholder="Firstname"
 									value={inputFirstName}
@@ -69,7 +68,7 @@ function SignUp() {
 								<input
 									name="lastname"
 									type="text"
-									class="form-control"
+									className="form-control"
 									id="lastname"
 									placeholder="Lastname"
 									value={inputLastName}
@@ -82,7 +81,7 @@ function SignUp() {
 								<input
 									name="email"
 									type="email"
-									class="form-control"
+									className="form-control"
 									placeholder="Email"
 									value={inputEmail}
 									onChange={(event) =>
@@ -94,7 +93,7 @@ function SignUp() {
 								<input
 									name="username"
 									type="text"
-									class="form-control"
+									className="form-control"
 									placeholder="Username"
 									value={inputUsername}
 									onChange={(event) =>
@@ -106,7 +105,7 @@ function SignUp() {
 								<input
 									name="password"
 									type="password"
-									class="form-control"
+									className="form-control"
 									placeholder="Password"
 									value={inputPassword}
 									onChange={(event) =>
@@ -115,12 +114,15 @@ function SignUp() {
 									required
 								/>
 
-								<button type="submit" class="btn btn-twitter">
+								<button
+									type="submit"
+									className="btn btn-twitter"
+								>
 									Sign Up
 								</button>
 								<span>
 									Already have an account?
-									<Link to="/login" class="text-primary">
+									<Link to="/login" className="text-primary">
 										Log in
 									</Link>
 								</span>
