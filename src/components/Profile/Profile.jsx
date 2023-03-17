@@ -9,14 +9,15 @@ import FollowBtn from "../SmallComponents/FollowBtn";
 
 function Profile() {
   const token = useSelector((state) => state.token);
-  const [profile, setProfile] = useState({followers:[]});
+  const [profile, setProfile] = useState({ followers: [] });
   const [tweets, setTweets] = useState([]);
   const [followersNumber, setFollowersNumber] = useState(0);
   const [followingNumber, setFollowingNumber] = useState(0);
   const { id } = useParams();
   const [user, setUser] = useState([]);
-
-
+  const [followingsAndMyProfile, setFollowingsAndMyProfile] = React.useState(
+    []
+  );
   useEffect(() => {
     const getProfileData = async () => {
       const response = await axios({
@@ -28,9 +29,15 @@ function Profile() {
       setTweets(response.data.data.tweets);
       setFollowersNumber(response.data.data.user.followers.length);
       setFollowingNumber(response.data.data.user.following.length);
+      setFollowingsAndMyProfile([
+        ...response.data.data.user.following,
+        response.data.data.user._id,
+      ]);
     };
     getProfileData();
   }, []);
+
+  console.log(tweets);
 
   return (
     <>
@@ -64,9 +71,12 @@ function Profile() {
               </div>
             </div>
             <div className="tweet-container">
-              {tweets.map((tweet) => (
-                <Tweet tweet={tweet} user={tweet.author} />
-              ))}
+              {tweets.map(
+                (tweet) =>
+                  followingsAndMyProfile.includes(tweet.author._id) && (
+                    <Tweet tweet={tweet} user={tweet.author} />
+                  )
+              )}
             </div>
           </div>
         </div>
@@ -75,4 +85,4 @@ function Profile() {
   );
 }
 
-// export default Profile;
+export default Profile;
