@@ -41,7 +41,7 @@ function Login() {
 							<h1 className="mb-2 fw-semibold fs-2">Log In</h1>
 							<p>Ready to start using Twitter?</p>
 							<form
-								action="/login"
+								action="/token"
 								method="POST"
 								className="sign-up-form"
 								onSubmit={handleSubmit}
@@ -75,9 +75,9 @@ function Login() {
 								</button>
 								<span>
 									Don't have an account?{" "}
-									<a href="/sign-up" className="text-primary">
+									<Link to="/signup" className="text-primary">
 										Sign up
-									</a>
+									</Link>
 								</span>
 							</form>
 						</div>
