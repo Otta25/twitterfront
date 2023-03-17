@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { formatDistance, subDays } from "date-fns";
 import moment from "moment";
 
-function Tweet({ tweet, user }) {
+function Tweet({ tweet, user, onDelete }) {
   const token = useSelector((state) => state.token);
   const [likes, setLikes] = useState(tweet.likes);
   const [liked, setLiked] = useState(likes.includes(user));
@@ -48,6 +48,7 @@ function Tweet({ tweet, user }) {
       method: "delete",
       url: `http://localhost:8000/tweets/borrar/${tweet._id}`,
     });
+    onDelete();
   };
 
   return (

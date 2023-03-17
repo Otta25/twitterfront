@@ -19,6 +19,9 @@ function Profile() {
   const [followingNumber, setFollowingNumber] = useState(0);
   const { id } = useParams();
   const [refresh, setRefresh] = useState(false);
+  
+  const updateTweetList = () => {
+		setRefresh((prev) => !prev);};
 
   useEffect(() => {
     const getProfileData = async () => {
@@ -115,7 +118,7 @@ function Profile() {
               {tweets.map(
                 (tweet) =>
                   profile._id === tweet.author._id && (
-                    <Tweet tweet={tweet} user={tweet.author} />
+                    <Tweet tweet={tweet} user={tweet.author} onDelete={updateTweetList}/>
                   )
               )}
             </div>
