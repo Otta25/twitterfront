@@ -7,6 +7,7 @@ function FollowBtn({ user }) {
   let userFollowedByLoggedUser = false;
   const [loggedUser, setLoggedUser] = useState([]);
   const token = useSelector((state) => state.token);
+  const[isFollowing,setIsFollowing] = useState(false)
 
   useEffect(() => {
     const getLoggedUser = async () => {
@@ -21,32 +22,57 @@ function FollowBtn({ user }) {
     getLoggedUser();
   }, []);
 
+  
   useEffect(() => {
     if (typeof loggedUser.following === "Array") {
       userFollowedByLoggedUser = loggedUser.following.includes(user);
     }
   }, [loggedUser]);
 
-  if (!userFollowedByLoggedUser) {
+
+
+function followUser(){
+  const getFollowedUser = async () => {
+    const response = await axios({
+      headers: { Authorization: `Bearer ${token}` },
+      method: "post",
+      url: `http://localhost:8000/users/${user._id}/follow`,
+    });
+  };
+  getFollowedUser();
+  setIsFollowing(true);
+  
+}
+
+
+function unFollowUser(){
+  const getUnFollowedUser = async () => {
+    const response = await axios({
+      headers: { Authorization: `Bearer ${token}` },
+      method: "delete",
+      url: `http://localhost:8000/users/${user._id}/follow`,
+    });
+  };
+  getUnFollowedUser();
+  setIsFollowing(false);
+}
+
+
+
+  if (!isFollowing) {
     return (
-      <form id="follow-form" action="/users/follow" method="POST">
-        <input type="hidden" name="userId" value={`${user._id}`} />
-        <button type="submit" class="btn ms-auto me-1 rounded-pill btn-skyblue">
+        <button onClick={()=>followUser()} class="btn ms-auto me-1 rounded-pill btn-skyblue">
           Follow
         </button>
-      </form>
     );
   } else {
     return (
-      <form id="follow-form" action="/users/unfollow" method="POST">
-        <input type="hidden" name="userId" value={`${user._id}`} />
         <button
-          type="submit"
+          onClick={()=>unFollowUser()}
           class="btn ms-auto me-1 rounded-pill unfollow-btn"
         >
           Unfollow
         </button>
-      </form>
     );
   }
 }
