@@ -33,6 +33,7 @@ function Home() {
     getUser();
   }, []);
 
+  console.log(user);
   /////////////////////////////////
   const [tweets, setTweets] = React.useState([]);
 
