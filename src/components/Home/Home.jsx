@@ -10,10 +10,14 @@ import WhatsHappening from "../SideCards/WhatsHappening";
 import WriteTweet from "../WriteTweet/WriteTweet";
 import { motion } from "framer-motion";
 
-
 function Home() {
   const token = useSelector((state) => state.token);
   const userData = useSelector((state) => state.user);
+  const [refresh, setRefresh] = useState(false);
+
+  const updateTweetList = () => {
+    setRefresh((prev) => !prev);
+  };
 
   const [idsFollowingsAndProfile, setIdsFollowingsAndProfile] = React.useState([
     ...userData.following,
@@ -33,7 +37,7 @@ function Home() {
       setTweets(response.data);
     };
     getTweets();
-  }, []);
+  }, [refresh]);
 
   return (
     <>
@@ -45,12 +49,20 @@ function Home() {
           </div>
 
           <div id="main-home-container" className="col-9 col-lg-5">
-            <WriteTweet tweets={tweets} setTweets={setTweets} />
-            {console.log(tweets)}
+            <WriteTweet
+              tweets={tweets}
+              setTweets={setTweets}
+              updateTweetList={updateTweetList}
+            />
+
             {tweets.map(
               (tweet) =>
                 idsFollowingsAndProfile.includes(tweet.author._id) && (
-                  <Tweet user={tweet.author} tweet={tweet} />
+                  <Tweet
+                    user={tweet.author}
+                    tweet={tweet}
+                    onDelete={updateTweetList}
+                  />
                 )
             )}
           </div>

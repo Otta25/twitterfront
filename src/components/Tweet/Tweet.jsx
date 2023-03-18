@@ -1,11 +1,11 @@
 import Style from "../Tweet/Tweet.module.css";
 import React, { useState } from "react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+
 import { useSelector } from "react-redux";
 import "./Tweet.css";
 import { Link } from "react-router-dom";
-import { formatDistance, subDays } from "date-fns";
+
 import moment from "moment";
 import { motion } from "framer-motion";
 
@@ -54,10 +54,10 @@ function Tweet({ tweet, user, onDelete }) {
 
   return (
     <motion.div
-    initial={{y:-40 ,opacity:0}}
-    animate={{ y: 0 , opacity:1}}
+      initial={{ y: -40, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
       className="border-bottom border-top w-100"
-      transition={{ delay: 0.2 ,ease:"linear"}}
+      transition={{ delay: 0.2, ease: "linear" }}
     >
       <div className="my-3">
         <div className="container">
@@ -131,6 +131,7 @@ function Tweet({ tweet, user, onDelete }) {
                         </g>
                       </svg>
                     </li>
+
                     <li className="tweet-icon" onClick={() => handleDelete()}>
                       {userData.id === user._id && (
                         <svg
