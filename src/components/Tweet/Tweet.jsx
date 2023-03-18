@@ -5,15 +5,23 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import "./Tweet.css";
 import { Link } from "react-router-dom";
+import { formatDistance, subDays } from "date-fns";
+import moment from "moment";
+import { motion } from "framer-motion";
 
-function Tweet({ tweet, user }) {
+function Tweet({ tweet, user, onDelete }) {
   const token = useSelector((state) => state.token);
   const [likes, setLikes] = useState(tweet.likes);
   const [liked, setLiked] = useState(likes.includes(user));
   const [redHeart, setRedHeart] = useState(false);
-  const dispatch = useDispatch();
   const userData = useSelector((state) => state.user);
-  console.log(userData.id);
+
+  const formatDate = moment
+    .utc(tweet.date)
+    .local()
+    .startOf("seconds")
+    .fromNow();
+
   const handleLike = async () => {
     setRedHeart(!redHeart);
     if (liked) {
@@ -41,10 +49,16 @@ function Tweet({ tweet, user }) {
       method: "delete",
       url: `http://localhost:8000/tweets/borrar/${tweet._id}`,
     });
+    onDelete();
   };
 
   return (
-    <div className="border-bottom border-top w-100">
+    <motion.div
+    initial={{y:-40 ,opacity:0}}
+    animate={{ y: 0 , opacity:1}}
+      className="border-bottom border-top w-100"
+      transition={{ delay: 0.2 ,ease:"linear"}}
+    >
       <div className="my-3">
         <div className="container">
           <div className="row g-0">
@@ -59,18 +73,19 @@ function Tweet({ tweet, user }) {
               </div>
             </div>
             <div class="col">
-              <h5 class="inline-b fw-semibold mb-1 me-1">
+              <h5 class="inline-b fw-semibold me-1">
                 <Link
                   to={"/users/" + user._id}
                   href={"/users/" + user.username}
-                  className="d-block text-truncate mb-0 fw-bold text-dark text-decoration-none"
+                  className="text-truncate fw-bold text-dark text-decoration-none"
                 >
                   {user.firstname} {user.lastname}
                 </Link>
               </h5>
-              <p class="inline-b font-grey mb-1">@{user.username}</p>
-              <span>•</span>
-              <p class="inline-b font-grey mb-1"> ago</p>
+              <p class="inline-b font-grey mb-2 ms-3">@{user.username}</p>
+              <span className="font-grey ms-3 me-1">•</span>
+              <p class="inline-b font-grey mb-2">{formatDate}</p>
+
               <p class="card-text">{tweet.content}</p>
               <div class="d-flex justify-content-between">
                 <div>
@@ -141,7 +156,7 @@ function Tweet({ tweet, user }) {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

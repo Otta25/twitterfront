@@ -19,6 +19,9 @@ function Profile() {
   const [followingNumber, setFollowingNumber] = useState(0);
   const { id } = useParams();
   const [refresh, setRefresh] = useState(false);
+  
+  const updateTweetList = () => {
+		setRefresh((prev) => !prev);};
 
   useEffect(() => {
     const getProfileData = async () => {
@@ -69,35 +72,22 @@ function Profile() {
             <Navbar></Navbar>
           </div>
           <div className="col-9 col-lg-5 px-0">
-            <div id="blue-div">
-              <img src={profile.photoPortada} alt="" />
-              <img
-                src={profile.photoProfile}
-                alt="foto-perfil"
-                id="profile-Photo"
-              />
-              {userData.id === profile._id ? (
-                <></>
-              ) : profile.followers.includes(userData.id) ? (
-                <button onClick={() => unFollow()} id="unfollow-btn">
-                  Unfollow
-                </button>
-              ) : (
-                <button onClick={() => follow()} id="follow-btn">
-                  Follow
-                </button>
-              )}
-            </div>
-            <div id="white-div">
-              <div>
-                <h5>
-                  {profile.firstname} {profile.lastname}
-                </h5>
-                <p>@{profile.username}</p>
-                <span>{profile.bio}</span>
-              </div>
-              <div>
-                <NavLink to={`following `}>
+            <div id="headerProfile">
+			<div className="followBtnContainer">
+				{userData.id === profile._id ? (
+                  <></>
+                ) : profile.followers.includes(userData.id) ? (
+                  <button onClick={() => unFollow()} id="unfollow-btn">
+                    Unfollow
+                  </button>
+                ) : (
+                  <button onClick={() => follow()} id="follow-btn">
+                    Follow
+                  </button>
+                )}	
+				</div>
+              <div className="followsNumber">
+                <NavLink to={`following`}>
                   <span>{followingNumber}</span>
                   <span className="gray-letter ms-1 me-2">Following</span>
                 </NavLink>
@@ -106,12 +96,29 @@ function Profile() {
                   <span className="gray-letter ms-1 me-2">Followers</span>
                 </NavLink>
               </div>
+              <img src={profile.photoPortada} alt="" />
+              <div className="cardProfilePic">
+                <img
+                  src={profile.photoProfile}
+                  alt="foto-perfil"
+                  id="profile-Photo"
+                />
+                <div id="white-div">
+                  <div>
+                    <h5>
+                      {profile.firstname} {profile.lastname}
+                    </h5>
+                    <p>@{profile.username}</p>
+        
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="tweet-container">
               {tweets.map(
                 (tweet) =>
                   profile._id === tweet.author._id && (
-                    <Tweet tweet={tweet} user={tweet.author} />
+                    <Tweet tweet={tweet} user={tweet.author} onDelete={updateTweetList}/>
                   )
               )}
             </div>
