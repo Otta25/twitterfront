@@ -7,6 +7,7 @@ import "./Tweet.css";
 import { Link } from "react-router-dom";
 import { formatDistance, subDays } from "date-fns";
 import moment from "moment";
+import { motion } from "framer-motion";
 
 function Tweet({ tweet, user, onDelete }) {
   const token = useSelector((state) => state.token);
@@ -52,7 +53,12 @@ function Tweet({ tweet, user, onDelete }) {
   };
 
   return (
-    <div className="border-bottom border-top w-100">
+    <motion.div
+    initial={{y:-40 ,opacity:0}}
+    animate={{ y: 0 , opacity:1}}
+      className="border-bottom border-top w-100"
+      transition={{ delay: 0.2 ,ease:"linear"}}
+    >
       <div className="my-3">
         <div className="container">
           <div className="row g-0">
@@ -150,7 +156,7 @@ function Tweet({ tweet, user, onDelete }) {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

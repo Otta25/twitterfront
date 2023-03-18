@@ -2,6 +2,8 @@ import "./SideCards.css";
 import UserToFollow from "../SmallComponents/UserToFollow";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { motion } from "framer-motion";
+
 
 function WhoToFollow() {
 	const [users, setUsers] = useState([]);
@@ -17,7 +19,10 @@ function WhoToFollow() {
 	}, []);
 
 	return (
-		<div className="card border-0 px-2 card-css">
+		<motion.div initial={{ x: -50, opacity: 0 }}
+		animate={{ x: -10, opacity: 1 }}
+		transition={{ delay: 0.2, ease: "linear" }}  
+		 className="card border-0 px-2 card-css">
 			<ul className="list-group list-group-flush container">
 				<li className="p-3">
 					<h4 className="fw-bolder">Who to follow</h4>
@@ -26,7 +31,7 @@ function WhoToFollow() {
 					<UserToFollow user={user} />
 				))}
 			</ul>
-		</div>
+		</motion.div>
 	);
 }
 

@@ -8,6 +8,7 @@ import Navbar from "../Navbar/Navbar";
 import WhoToFollow from "../SideCards/WhoToFollow";
 import WhatsHappening from "../SideCards/WhatsHappening";
 import WriteTweet from "../WriteTweet/WriteTweet";
+import { motion } from "framer-motion";
 
 
 function Home() {
