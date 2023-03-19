@@ -1,0 +1,12 @@
+.standard-item {
+	text-decoration: none;
+	color: black;
+}
+
+#headerProfile {
+	z-index: 0;
+}
+
+#rightCol {
+	z-index: 1;
+}
