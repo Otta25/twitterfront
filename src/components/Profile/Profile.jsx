@@ -52,6 +52,7 @@ function Profile() {
 		setFollowersNumber(followersNumber + 1);
 		setRefresh((prev) => !prev);
 	}
+	console.log(refresh);
 
 	function unFollow() {
 		const unFollowUser = async () => {
@@ -71,7 +72,7 @@ function Profile() {
 				<div className="row mt-4">
 					<div className="d-none d-xl-block col-lg-1 "></div>
 					<div className="col-2 me-3">
-						<Navbar></Navbar>
+						<Navbar update={updateTweetList}></Navbar>
 					</div>
 					<div className="col-9 col-lg-5 px-0 border-start border-end">
 						<div id="headerProfile">
@@ -95,7 +96,10 @@ function Profile() {
 								)}
 							</div>
 							<div className="followsNumber">
-								<NavLink to={`following`}>
+								<NavLink
+									to={`following`}
+									className="decoration-none"
+								>
 									<span className="black-color">
 										{followingNumber}
 									</span>
@@ -103,7 +107,10 @@ function Profile() {
 										Following
 									</span>
 								</NavLink>
-								<NavLink to={`followers `}>
+								<NavLink
+									to={`followers `}
+									className="decoration-none"
+								>
 									<span className="black-color">
 										{followersNumber}
 									</span>

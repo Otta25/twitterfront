@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 
-function WhoToFollow() {
+function WhoToFollow({ update }) {
 	const [users, setUsers] = useState([]);
 
 	useEffect(() => {
@@ -29,7 +29,7 @@ function WhoToFollow() {
 					<h4 className="fw-bolder">Who to follow</h4>
 				</li>
 				{users.slice(0, 5).map((user) => (
-					<UserToFollow user={user} />
+					<UserToFollow user={user} update={update} />
 				))}
 			</ul>
 		</motion.div>
