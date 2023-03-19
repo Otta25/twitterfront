@@ -33,20 +33,21 @@ function FollowBtn({ user, updateFollowingList }) {
       method: "post",
       url: `http://localhost:8000/users/${user._id}/follow`,
     });
-    updateFollowingList()
+    
     setIsFollowing(true);
+    updateFollowingList();
     
   };
 
   const unFollowUser = async () => {
     const response = await axios({
       headers: { Authorization: `Bearer ${token}` },
-      method: "delete",
+      method: "post",
       url: `http://localhost:8000/users/${user._id}/unfollow`,
     });
 
     setIsFollowing(false);
-    updateFollowingList()
+    updateFollowingList();
     
     
   };
@@ -54,7 +55,7 @@ function FollowBtn({ user, updateFollowingList }) {
   if (!isFollowing) {
     return (
       <button
-        onClick= {()=>followUser()}
+        onClick= {() =>followUser ()}
         className="btn ms-auto me-1 rounded-pill btn-skyblue"
       >
         Follow

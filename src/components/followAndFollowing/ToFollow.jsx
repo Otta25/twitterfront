@@ -10,10 +10,10 @@ function ToFollow({ user , updateFollowingList }) {
       <div class="my-3">
         <div class="col">
           <div class="d-flex align-items-center ms-1">
-            <img class="me-3 p-1" src="/img/avatarSmall.svg" alt="" srcset="" />
+            <img className="tiny-pic-profile me-3"src={user.photoProfile} alt="" srcset="" />
             <div>
-              <p class="mb-0 fw-bold">{user.username}</p>
-              <p class="mb-0 font-grey">@{user.username}</p>
+              <p className="mb-0 fw-bold">{user.username}</p>
+              <p className="mb-0 font-grey">@{user.username}</p>
             </div>
             <div class="ms-auto me-2">
                 {<FollowBtn user={user} updateFollowingList={updateFollowingList} />}

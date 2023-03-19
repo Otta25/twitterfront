@@ -14,7 +14,6 @@ function Home() {
 	const token = useSelector((state) => state.token);
 	const userData = useSelector((state) => state.user);
 	const [refresh, setRefresh] = useState(false);
-
 	const updateTweetList = () => {
 		setRefresh((prev) => !prev);
 	};
@@ -54,6 +53,7 @@ function Home() {
 							tweets={tweets}
 							setTweets={setTweets}
 							updateTweetList={updateTweetList}
+							user = {userData}
 						/>
 
 						{tweets.map(

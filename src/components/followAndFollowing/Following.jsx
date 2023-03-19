@@ -27,6 +27,19 @@ function Following({}) {
 	/////////////////////////////////
 	const [following, setFollowing] = React.useState([]);
 
+
+	useEffect(() => {
+		const getProfileData = async () => {
+			const response = await axios({
+				headers: { Authorization: `Bearer ${token}` },
+				method: "get",
+				url: `http://localhost:8000/users/${id}`,
+			});
+			setProfile(response.data.data.user);
+		};
+		getProfileData();
+	}, []);
+
 	useEffect(() => {
 		const getFollowing = async () => {
 			const response = await axios({

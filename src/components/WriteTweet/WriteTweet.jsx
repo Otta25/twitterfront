@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 
 function WriteTweet({ setTweets, tweets, updateTweetList }) {
 	const token = useSelector((state) => state.token);
+	const userData = useSelector((state) => state.user);
+
 	const [content, setContent] = React.useState("");
 
 	const handleSubmit = async (event) => {
