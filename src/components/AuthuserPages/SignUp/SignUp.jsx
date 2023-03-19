@@ -17,15 +17,20 @@ function SignUp() {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		let formdata = new FormData(event.target);
-		formdata.append("dirInicio", __dirname + "/../");
+		formdata.append("img", profilePhoto);
 		await axios({
 			method: "post",
-			url: "http://localhost:8000/users",
+			url: "http://localhost:8000/users/",
 			headers: {
 				"Content-Type": "multipart/form-data",
 			},
 			data: {
-				formdata,
+				email: inputEmail,
+				username: inputUsername,
+				password: inputPassword,
+				firstName: inputFirstName,
+				lastName: inputLastName,
+				photoProfile: formdata,
 			},
 		});
 		navigate("/login");
@@ -96,9 +101,9 @@ function SignUp() {
 									aria-describedby="img"
 									name="img"
 									value={profilePhoto}
-									onChange={(event) =>
-										setProfilePhoto(event.target.value)
-									}
+									onChange={(event) => {
+										setProfilePhoto(event.target.value);
+									}}
 								/>
 
 								<input
