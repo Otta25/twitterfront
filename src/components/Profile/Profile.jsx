@@ -51,6 +51,7 @@ function Profile() {
     setFollowersNumber(followersNumber + 1);
     setRefresh((prev) => !prev);
   }
+  console.log(refresh);
 
   function unFollow() {
     const unFollowUser = async () => {
@@ -132,7 +133,7 @@ function Profile() {
               {" "}
               <WhatsHappening />
             </div>
-            <WhoToFollow />
+            <WhoToFollow update={updateTweetList} />
           </div>
         </div>
       </div>
