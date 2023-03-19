@@ -4,7 +4,7 @@ import React from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 
-function WriteTweet({ setTweets, tweets }) {
+function WriteTweet({ setTweets, tweets, updateTweetList }) {
 	const token = useSelector((state) => state.token);
 	const [content, setContent] = React.useState("");
 
@@ -20,6 +20,7 @@ function WriteTweet({ setTweets, tweets }) {
 		});
 
 		setTweets([response.data, ...tweets]);
+		updateTweetList();
 	};
 
 	return (

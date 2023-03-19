@@ -1,15 +1,16 @@
 import "./Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { createToken } from "../../reducers/tokenReducer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 
-function Navbar() {
+function Navbar(update) {
   const token = useSelector((state) => state.token);
   const dispatch = useDispatch();
   const [user, setUser] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getUser = async () => {

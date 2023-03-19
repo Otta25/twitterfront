@@ -1,11 +1,11 @@
 import Style from "../Tweet/Tweet.module.css";
 import React, { useState } from "react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+
 import { useSelector } from "react-redux";
 import "./Tweet.css";
 import { Link } from "react-router-dom";
-import { formatDistance, subDays } from "date-fns";
+
 import moment from "moment";
 import { motion } from "framer-motion";
 

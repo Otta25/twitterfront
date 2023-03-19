@@ -96,13 +96,17 @@ function Profile() {
 							</div>
 							<div className="followsNumber">
 								<NavLink to={`following`}>
-									<span>{followingNumber}</span>
+									<span className="black-color">
+										{followingNumber}
+									</span>
 									<span className="gray-letter ms-1 me-2">
 										Following
 									</span>
 								</NavLink>
 								<NavLink to={`followers `}>
-									<span>{followersNumber}</span>
+									<span className="black-color">
+										{followersNumber}
+									</span>
 									<span className="gray-letter ms-1 me-2">
 										Followers
 									</span>
