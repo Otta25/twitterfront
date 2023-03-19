@@ -1,7 +1,10 @@
 import React from "react";
 import FollowBtn from "../SmallComponents/FollowBtn";
 
-function ToFollow({ user }) {
+function ToFollow({ user , updateFollowingList }) {
+
+
+  
   return (
     <div class="p-2 container w-100">
       <div class="my-3">
@@ -13,7 +16,7 @@ function ToFollow({ user }) {
               <p class="mb-0 font-grey">@{user.username}</p>
             </div>
             <div class="ms-auto me-2">
-                {<FollowBtn user={user}/>}
+                {<FollowBtn user={user} updateFollowingList={updateFollowingList} />}
             </div>
           </div>
         </div>

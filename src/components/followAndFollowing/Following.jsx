@@ -1,8 +1,8 @@
-import { useEffect } from "react";
+import { useEffect , useState } from "react";
 import axios from "axios";
 import React from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useParams} from "react-router";
 import { NavLink } from "react-router-dom";
 
 import Navbar from "../Navbar/Navbar";
@@ -12,21 +12,17 @@ import ToFollow from "./ToFollow";
 
 function Following({}) {
 	const token = useSelector((state) => state.token);
+	const userData = useSelector((state) => state.user);
 	const { id } = useParams();
 	////////////////////////
 	const [profile, setProfile] = React.useState([]);
+	const [refresh, setRefresh] = useState(false);
+	
+	const updateFollowingList = () => {
+		setRefresh((prev) => !prev);
+	};
+	
 
-	useEffect(() => {
-		const getProfileData = async () => {
-			const response = await axios({
-				headers: { Authorization: `Bearer ${token}` },
-				method: "get",
-				url: `http://localhost:8000/users/${id}`,
-			});
-			setProfile(response.data.data.user);
-		};
-		getProfileData();
-	}, []);
 
 	/////////////////////////////////
 	const [following, setFollowing] = React.useState([]);
@@ -41,7 +37,7 @@ function Following({}) {
 			setFollowing(response.data);
 		};
 		getFollowing();
-	}, []);
+	}, [refresh]);
 
 	/////////////////////////////////
 	console.log(profile);
@@ -86,7 +82,11 @@ function Following({}) {
 						</div>
 
 						{following.map((user) => (
-							<ToFollow user={user}></ToFollow>
+							<ToFollow
+								user={user}
+								updateFollowingList={updateFollowingList}
+
+							/>
 						))}
 					</div>
 					<div className="d-none d-lg-block col-lg-2 border-start">
