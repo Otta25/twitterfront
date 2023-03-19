@@ -13,13 +13,26 @@ import Navbar from "../Navbar/Navbar";
 import WhoToFollow from "../SideCards/WhoToFollow";
 import WhatsHappening from "../SideCards/WhatsHappening";
 
-function Followers() {
+function Followers({}) {
 	const token = useSelector((state) => state.token);
 	const { id } = useParams();
-	const [user, setUser] = useState([]);
+
+	////////////////////////
+	const [profile, setProfile] = React.useState([]);
+
+	useEffect(() => {
+		const getProfileData = async () => {
+			const response = await axios({
+				headers: { Authorization: `Bearer ${token}` },
+				method: "get",
+				url: `http://localhost:8000/users/${id}`,
+			});
+			setProfile(response.data.data.user);
+		};
+		getProfileData();
+	}, []);
 
 	const [followers, setFollowers] = React.useState([]);
-
 	useEffect(() => {
 		const getFollowers = async () => {
 			const response = await axios({
@@ -32,9 +45,6 @@ function Followers() {
 		getFollowers();
 	}, []);
 
-	//const idsFollowingsAndProfile = [...user.following, user._id];
-	//   console.log(idsFollowingsAndProfile);
-
 	return (
 		<>
 			<div className="container-fluid">
@@ -45,8 +55,10 @@ function Followers() {
 					</div>
 					<div id="main-home-container" className="col-9 col-lg-5">
 						<div className="container ">
-							<h2 className="container">Perfil</h2>
-							<p className="container">@perfil</p>
+							<h2 className="container">
+								{profile.firstname} {profile.lastname}
+							</h2>
+							<p className="container">@{profile.username}</p>
 						</div>
 						<div class="container text-center">
 							<div class="row">

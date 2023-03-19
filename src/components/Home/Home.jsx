@@ -70,8 +70,8 @@ function Home() {
 						)}
 					</div>
 
-					<div className="d-none d-lg-block col-lg-3">
-						<WhatsHappening /> <br /> <WhoToFollow />
+					<div id="rightCol" className="d-none d-lg-block col-lg-3">
+						<WhatsHappening /> <WhoToFollow />
 					</div>
 				</div>
 			</div>

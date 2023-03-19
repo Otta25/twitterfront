@@ -56,7 +56,7 @@ function Tweet({ tweet, user, onDelete }) {
 		<motion.div
 			initial={{ y: -40, opacity: 0 }}
 			animate={{ y: 0, opacity: 1 }}
-			className="border-bottom border-top w-100"
+			className="border-bottom w-100"
 			transition={{ delay: 0.2, ease: "linear" }}
 		>
 			<div className="my-3">
@@ -78,15 +78,16 @@ function Tweet({ tweet, user, onDelete }) {
 								href={"/users/" + user.username}
 								className="text-decoration-none"
 							>
-								<h5 class="text-truncate fw-bold text-dark d-inline-b fw-semibold me-1 w-75">
+								<h5 class="text-truncate fw-bold text-dark d-inline fw-semibold me-1 w-75">
 									{user.firstname} {user.lastname}
 								</h5>
 							</Link>
-							<p class="d-inline-b font-grey mb-2 ms-3">
+							<p class="d-inline font-grey mb-2 ms-1 small">
 								@{user.username}
 							</p>
-							<span className="font-grey ms-3 me-1">•</span>
-							<p class="inline-b font-grey mb-2">{formatDate}</p>
+							<p class="inline-b font-grey ms-1 mb-2 small">
+								• {formatDate}
+							</p>
 
 							<p class="card-text">{tweet.content}</p>
 							<div class="d-flex justify-content-between">

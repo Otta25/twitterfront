@@ -99,6 +99,7 @@ function Profile() {
 								<NavLink
 									to={`following`}
 									className="decoration-none"
+									profile={profile}
 								>
 									<span className="black-color">
 										{followingNumber}
@@ -110,6 +111,7 @@ function Profile() {
 								<NavLink
 									to={`followers `}
 									className="decoration-none"
+									profile={profile}
 								>
 									<span className="black-color">
 										{followersNumber}
@@ -150,7 +152,10 @@ function Profile() {
 							)}
 						</div>
 					</div>
-					<div id="rightCol" className="col-3 bg-white z-index-2">
+					<div
+						id="rightCol"
+						className="d-none d-lg-block col-3 bg-white z-index-2"
+					>
 						<WhatsHappening />
 
 						<WhoToFollow />
