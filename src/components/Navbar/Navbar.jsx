@@ -36,7 +36,7 @@ function Navbar({ update }) {
 			transition={{ delay: 0.2, ease: "linear" }}
 			id="main-navbar"
 		>
-			<nav className="">
+			<nav className="" id="main-navbar">
 				<ul id="nav-icons" className="mt-0 pt-0">
 					<li id="logo-twitter" className="mt-2 mt-lg-0">
 						<svg
@@ -171,45 +171,42 @@ function Navbar({ update }) {
 							More
 						</span>
 					</li>
-					<li>
-						<a
-							id="tweet-btn"
-							className="btn text-white d-none d-xl-block"
-							href="/"
-						>
-							Tweet
-						</a>
-						<a
-							id="tweet-btn"
-							className="btn text-white d-xl-none"
-							href="/"
-						>
-							<i class="bi bi-pen"></i>
-						</a>
-					</li>
-					<li>
-						<Link
-							onClick={() => {
-								dispatch(createToken(""));
-							}}
-							id="logout-btn"
-							className="btn btn-danger rounded-pill mt-1 text-white text-decoration-none d-none d-xl-block"
-							to="/"
-						>
-							Log Out
-						</Link>
-						<Link
-							onClick={() => {
-								dispatch(createToken(""));
-							}}
-							id="logout-btn"
-							className="btn btn-danger rounded-pill mt-1 text-white text-decoration-none d-xl-none"
-							to="/"
-						>
-							<i class="bi bi-box-arrow-left"></i>
-						</Link>
-					</li>
+
+					<a
+						id="tweet-btn"
+						className="btn text-white d-none d-xl-block"
+						href="/"
+					>
+						Tweet
+					</a>
+					<a
+						id="tweet-btn"
+						className="btn text-white d-xl-none"
+						href="/"
+					>
+						<i class="bi bi-pen"></i>
+					</a>
 				</ul>
+				<Link
+					onClick={() => {
+						dispatch(createToken(""));
+					}}
+					id="logout-btn"
+					className="m-3 mt-auto btn btn-danger rounded-pill mt-1 text-white text-decoration-none d-none d-xl-block"
+					to="/"
+				>
+					Log Out
+				</Link>
+				<Link
+					onClick={() => {
+						dispatch(createToken(""));
+					}}
+					id="logout-btn"
+					className="btn btn-danger rounded-pill mt-1 text-white text-decoration-none d-xl-none"
+					to="/"
+				>
+					<i class="bi bi-box-arrow-left"></i>
+				</Link>
 			</nav>
 		</motion.div>
 	);
