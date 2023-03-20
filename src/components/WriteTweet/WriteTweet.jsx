@@ -15,7 +15,7 @@ function WriteTweet({ setTweets, tweets, updateTweetList }) {
 		const response = await axios({
 			headers: { Authorization: `Bearer ${token}` },
 			method: "post",
-			url: "http://localhost:8000/tweets",
+			url: `${process.env.REACT_APP_API_URL}/tweets`,
 			data: {
 				content: content,
 			},

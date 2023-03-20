@@ -18,7 +18,7 @@ function App() {
 			<Routes>
 				<Route path="/signup" element={<SignUp />} />
 				<Route path="/login" element={<Login />} />
-				<Route path="http://localhost:8000/users" element={<Login />} />
+				<Route path= "/users" element={<Login />} />
 				<Route path="/" element={token ? <Home /> : <Login />} />
 				<Route path="/users/:id" element={<Profile />} />
 				<Route path="users/:id/following" element={<Following />}  />

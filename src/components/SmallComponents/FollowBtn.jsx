@@ -13,7 +13,7 @@ function FollowBtn({ user, updateFollowingList }) {
       const response = await axios({
         headers: { Authorization: `Bearer ${token}` },
         method: "get",
-        url: "http://localhost:8000",
+        url: `${process.env.REACT_APP_API_URL}`,
       });
 
       setLoggedUser(response.data);

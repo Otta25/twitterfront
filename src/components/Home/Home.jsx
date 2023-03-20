@@ -28,7 +28,7 @@ function Home() {
 			const response = await axios({
 				headers: { Authorization: `Bearer ${token}` },
 				method: "get",
-				url: "http://localhost:8000/tweets",
+				url: `${process.env.REACT_APP_API_URL}/tweets`,
 			});
 
 			setTweets(response.data);

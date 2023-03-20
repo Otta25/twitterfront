@@ -11,7 +11,7 @@ function WhoToFollow({ update }) {
     const getUsers = async () => {
       const response = await axios({
         method: "get",
-        url: "http://localhost:8000/users",
+        url: `${process.env.REACT_APP_API_URL}/users`,
       }).then((data) => setUsers(data.data.user));
     };
     getUsers();

@@ -24,7 +24,7 @@ function SignUp() {
 		
 		await axios({
 			method: "post",
-			url: "http://localhost:8000/users/",
+			url: `${process.env.REACT_APP_API_URL}/users/`,
 			headers: {
 				"Content-Type": "multipart/form-data",
 			},
@@ -49,7 +49,7 @@ function SignUp() {
 							<h1 className="mb-2 fw-semibold fs-2">Sign Up</h1>
 							<p>Create and account and start using Twitter</p>
 							<form
-								action="http://localhost:8000/users"
+								action={`${process.env.REACT_APP_API_URL}/users`}
 								method="post"
 								className="sign-up-form"
 								onSubmit={handleSubmit}
