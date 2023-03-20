@@ -24,7 +24,7 @@ function WhoToFollow({ update }) {
 			transition={{ delay: 0.2, ease: "linear" }}
 			className="card border-0 px-2 card-css"
 		>
-			<ul className="list-group list-group-flush container">
+			<ul className="list-group list-group-flush container px-0">
 				<li className="p-3">
 					<h4 className="fw-bolder">Who to follow</h4>
 				</li>
