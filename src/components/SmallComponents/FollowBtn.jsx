@@ -6,7 +6,7 @@ import "./FollowBtn.css";
 function FollowBtn({ user, updateFollowingList }) {
   const [loggedUser, setLoggedUser] = useState([]);
   const token = useSelector((state) => state.token);
-  const [isFollowing, setIsFollowing] = useState(false);
+  const [isFollowing, setIsFollowing] = useState();
 
   useEffect(() => {
     const getLoggedUser = async () => {
@@ -46,6 +46,7 @@ function FollowBtn({ user, updateFollowingList }) {
     });
 
     updateFollowingList();
+    setIsFollowing(false);
   };
 
   if (!isFollowing) {
