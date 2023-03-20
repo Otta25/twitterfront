@@ -12,7 +12,7 @@ import Followers from "./components/followAndFollowing/Followers";
 
 function App() {
 	const token = useSelector((state) => state.token);
-	
+	console.log(token);
 	return (
 		<div className="App">
 			<Routes>

@@ -184,7 +184,7 @@ function Navbar({ update }) {
 						className="btn text-white d-xl-none"
 						href="/"
 					>
-						<i className="bi bi-pen"></i>
+						<i class="bi bi-pen"></i>
 					</a>
 				</ul>
 				<Link
@@ -205,7 +205,7 @@ function Navbar({ update }) {
 					className="btn btn-danger rounded-pill mt-1 text-white text-decoration-none d-xl-none"
 					to="/"
 				>
-					<i className="bi bi-box-arrow-left"></i>
+					<i class="bi bi-box-arrow-left"></i>
 				</Link>
 			</nav>
 		</motion.div>

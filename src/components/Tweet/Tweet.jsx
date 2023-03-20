@@ -72,25 +72,25 @@ function Tweet({ tweet, user, onDelete }) {
 								/>
 							</div>
 						</div>
-						<div className="col">
+						<div class="col">
 							<Link
 								to={"/users/" + user._id}
 								href={"/users/" + user.username}
 								className="text-decoration-none"
 							>
-								<h5 className="text-truncate fw-bold text-dark d-inline fw-semibold me-1 w-75">
+								<h5 class="text-truncate fw-bold text-dark d-inline fw-semibold me-1 w-75">
 									{user.firstname} {user.lastname}
 								</h5>
 							</Link>
-							<p className="d-inline font-grey mb-2 ms-1 small">
+							<p class="d-inline font-grey mb-2 ms-1 small">
 								@{user.username}
 							</p>
-							<p className="inline-b font-grey ms-1 mb-2 small">
+							<p class="inline-b font-grey ms-1 mb-2 small">
 								• {formatDate}
 							</p>
 
-							<p className="card-text">{tweet.content}</p>
-							<div className="d-flex justify-content-between">
+							<p class="card-text">{tweet.content}</p>
+							<div class="d-flex justify-content-between">
 								<div>
 									<ul id="tweet-icon-list">
 										<li id="like-icon">
@@ -148,7 +148,7 @@ function Tweet({ tweet, user, onDelete }) {
 													width="16"
 													height="16"
 													fill="currentColor"
-													className="bi bi-trash"
+													class="bi bi-trash"
 													viewBox="0 0 16 16"
 												>
 													<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />

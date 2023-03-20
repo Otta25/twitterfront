@@ -68,9 +68,9 @@ function Followers({}) {
               </h2>
               <p className="container">@{profile.username}</p>
             </div>
-            <div className="container text-center">
-              <div className="row">
-                <div className="col">
+            <div class="container text-center">
+              <div class="row">
+                <div class="col">
                   <NavLink
                     to={`/users/${id}/followers`}
                     state={{ token }}
@@ -79,7 +79,7 @@ function Followers({}) {
                     Followers
                   </NavLink>
                 </div>
-                <div className="col">
+                <div class="col">
                   <NavLink
                     to={`/users/${id}/following`}
                     state={{ token }}
