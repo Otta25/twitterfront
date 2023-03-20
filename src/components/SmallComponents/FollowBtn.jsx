@@ -4,73 +4,70 @@ import axios from "axios";
 import "./FollowBtn.css";
 
 function FollowBtn({ user, updateFollowingList }) {
-  const [loggedUser, setLoggedUser] = useState([]);
-  const token = useSelector((state) => state.token);
-  const [isFollowing, setIsFollowing] = useState(false);
-  
-  useEffect(() => {
-    const getLoggedUser = async () => {
-      const response = await axios({
-        headers: { Authorization: `Bearer ${token}` },
-        method: "get",
-        url: "http://localhost:8000",
-      });
+	const [loggedUser, setLoggedUser] = useState([]);
+	const token = useSelector((state) => state.token);
+	const [isFollowing, setIsFollowing] = useState(false);
 
-      setLoggedUser(response.data);
-    };
-    getLoggedUser();
-  }, []);
+	useEffect(() => {
+		const getLoggedUser = async () => {
+			const response = await axios({
+				headers: { Authorization: `Bearer ${token}` },
+				method: "get",
+				url: "http://localhost:8000",
+			});
 
-  useEffect(() => {
-    if (Array.isArray(loggedUser.following)) {
-      setIsFollowing(loggedUser.following.includes(user._id));
-    }
-  }, [loggedUser]);
+			setLoggedUser(response.data);
+		};
+		getLoggedUser();
+	}, []);
 
-  const followUser = async () => {
-    const response = await axios({
-      headers: { Authorization: `Bearer ${token}` },
-      method: "post",
-      url: `http://localhost:8000/users/${user._id}/follow`,
-    });
-    
-    setIsFollowing(true);
-    updateFollowingList();
-    
-  };
+	useEffect(() => {
+		if (Array.isArray(loggedUser.following)) {
+			setIsFollowing(loggedUser.following.includes(user._id));
+		}
+	}, [loggedUser]);
 
-  const unFollowUser = async () => {
-    const response = await axios({
-      headers: { Authorization: `Bearer ${token}` },
-      method: "post",
-      url: `http://localhost:8000/users/${user._id}/unfollow`,
-    });
+	const followUser = async () => {
+		const response = await axios({
+			headers: { Authorization: `Bearer ${token}` },
+			method: "post",
+			url: `http://localhost:8000/users/${user._id}/follow`,
+		});
 
-    setIsFollowing(false);
-    updateFollowingList();
-    
-    
-  };
+		setIsFollowing(true);
+		updateFollowingList();
+	};
 
-  if (!isFollowing) {
-    return (
-      <button
-        onClick= {() =>followUser ()}
-        className="btn ms-auto me-1 rounded-pill btn-skyblue"
-      >
-        Follow
-      </button>
-    );
-  } else {
-    return (
-      <button
-        onClick={() => unFollowUser()}
-        className="btn ms-auto me-1 rounded-pill unfollow-btn"
-      >
-        Unfollow
-      </button>
-    );
-  }
+	const unFollowUser = async () => {
+		const response = await axios({
+			headers: { Authorization: `Bearer ${token}` },
+			method: "post",
+			url: `http://localhost:8000/users/${user._id}/unfollow`,
+		});
+
+		setIsFollowing(false);
+		updateFollowingList();
+	};
+
+	if (!isFollowing) {
+		return (
+			<button
+				onClick={() => followUser()}
+				className="btn rounded-pill btn-skyblue position-relative end-0"
+			>
+				Follow
+			</button>
+		);
+	} else {
+		return (
+			<button
+				onClick={() => unFollowUser()}
+				className="btn rounded-pill unfollow-btn position-relative end-0"
+			>
+				Unfollow
+			</button>
+		);
+	}
 }
 
 export default FollowBtn;

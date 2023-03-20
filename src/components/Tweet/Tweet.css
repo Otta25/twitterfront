@@ -11,6 +11,11 @@
 	height: 3.5rem;
 	border-radius: 50%;
 }
+.tiny-pic-user {
+	width: 2.5rem;
+	height: 2.5rem;
+	border-radius: 50%;
+}
 
 .tweet-icon {
 	fill: rgb(45, 45, 45);
@@ -22,5 +27,3 @@
 	display: flex;
 	padding-left: 0;
 }
-
-
