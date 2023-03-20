@@ -9,7 +9,7 @@ function WhatsHappening() {
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			transition={{ delay: 0.2, ease: "linear" }}
-			className="card border-0 px-2 card-css mt-3 mb-4"
+			className="card border-0 px-2 card-css mt-3 mb-4 d-none d-lg-block"
 		>
 			<ul className="list-group list-group-flush container">
 				<li className="p-2">

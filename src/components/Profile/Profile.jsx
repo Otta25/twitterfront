@@ -70,11 +70,11 @@ function Profile() {
 		<>
 			<div className="container-fluid">
 				<div className="row mt-4">
-					<div className="d-none d-xl-block col-lg-1 "></div>
-					<div className="col-2 me-3">
+					<div className="d-none d-md-inline-block col-1"></div>
+					<div className="col-1 col-xl-2">
 						<Navbar update={updateTweetList}></Navbar>
 					</div>
-					<div className="col-9 col-lg-5 px-0 border-start border-end">
+					<div className="col-10 col-md-8 col-lg-6 border-start border-end">
 						<div id="headerProfile">
 							<div className="followBtnContainer">
 								{userData.id === profile._id ? (
@@ -152,14 +152,12 @@ function Profile() {
 							)}
 						</div>
 					</div>
-					<div
-						id="rightCol"
-						className="d-none d-lg-block col-3 bg-white z-index-2"
-					>
+					<div className="rightCol d-none d-lg-block col-3 col-xxl-2 bg-white z-index-2">
 						<WhatsHappening />
 
 						<WhoToFollow />
 					</div>
+					<div className=" rightCol col-2 d-block d-lg-none bg-white z-index-2"></div>
 				</div>
 			</div>
 		</>

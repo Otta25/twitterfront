@@ -40,20 +40,20 @@ function Home() {
 		<>
 			<div className="container-fluid">
 				<div className="row mt-4">
-					<div className="d-none d-xl-block col-lg-1"></div>
-					<div className="col-2 me-3">
+					<div className="d-none d-md-inline-block col-1"></div>
+					<div className="col-1 col-xl-2">
 						<Navbar></Navbar>
 					</div>
 
 					<div
 						id="main-home-container"
-						className="col-9 col-lg-5 border-start border-end"
+						className="col-10 col-md-8 col-lg-6 border-start border-end"
 					>
 						<WriteTweet
 							tweets={tweets}
 							setTweets={setTweets}
 							updateTweetList={updateTweetList}
-							user = {userData}
+							user={userData}
 						/>
 
 						{tweets.map(
@@ -70,9 +70,13 @@ function Home() {
 						)}
 					</div>
 
-					<div id="rightCol" className="d-none d-lg-block col-lg-3">
+					<div
+						id="rightCol"
+						className="d-none d-lg-block col-3 col-xxl-2"
+					>
 						<WhatsHappening /> <WhoToFollow />
 					</div>
+					<div className="col-3 d-md-none"></div>
 				</div>
 			</div>
 		</>

@@ -1,10 +1,16 @@
-.standard-item{
-    text-decoration: none;
-    color   : black;
-
+.standard-item {
+	text-decoration: none;
+	color: black;
 }
 
-.focused-item{
-    border-bottom: solid 2px skyblue;
-    
+.focused-item {
+	border-bottom: solid 2px skyblue;
+}
+
+#main-home-container {
+	min-height: 100vh;
+}
+
+#rightCol {
+	flex-grow: 1;
 }

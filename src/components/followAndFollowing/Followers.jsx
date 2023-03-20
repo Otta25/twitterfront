@@ -49,11 +49,14 @@ function Followers({}) {
 		<>
 			<div className="container-fluid">
 				<div className="row mt-4">
-					<div className="d-none d-xl-block col-lg-1"></div>
-					<div className="col-2 border-end">
+					<div className="d-none d-md-inline-block col-1"></div>
+					<div className="col-1 col-xl-2">
 						<Navbar></Navbar>
 					</div>
-					<div id="main-home-container" className="col-9 col-lg-5">
+					<div
+						id="main-home-container"
+						className="col-10 col-md-8 col-lg-6 border-start border-end"
+					>
 						<div className="container ">
 							<h2 className="container">
 								{profile.firstname} {profile.lastname}
@@ -86,10 +89,13 @@ function Followers({}) {
 							<ToFollow user={user}></ToFollow>
 						))}
 					</div>
-					<div className="d-none d-lg-block col-lg-2 border-start">
+					<div
+						id="rightCol"
+						className="d-none d-lg-block col-3 col-xxl-2"
+					>
 						<WhatsHappening /> <br /> <WhoToFollow />
 					</div>
-					<div className="d-none d-xl-block col-2"></div>
+					<div className="col-3 d-md-none"></div>
 				</div>
 			</div>
 		</>
