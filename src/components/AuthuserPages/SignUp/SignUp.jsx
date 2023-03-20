@@ -10,18 +10,15 @@ function SignUp() {
 	const [inputEmail, setInputEmail] = React.useState("");
 	const [inputUsername, setInputUsername] = React.useState("");
 	const [inputPassword, setInputPassword] = React.useState("");
-	const [profilePhoto, setProfilePhoto] = React.useState([]);
+	// const [profilePhoto, setProfilePhoto] = React.useState([]);
 
 	const navigate = useNavigate();
-
-	console.log(profilePhoto)
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		let formdata = new FormData(event.target);
-		formdata.append('photoProfile',profilePhoto.files)
-	
-		
+		// formdata.append("photoProfile", profilePhoto.files);
+
 		await axios({
 			method: "post",
 			url: "http://localhost:8000/users/",
@@ -30,7 +27,7 @@ function SignUp() {
 			},
 			data: formdata,
 		});
-		console.log(formdata)
+		console.log(formdata);
 		navigate("/login");
 	};
 
@@ -92,7 +89,7 @@ function SignUp() {
 									required
 								/>
 
-								<input
+								{/* <input
 									type="file"
 									className="form-control"
 									id="img"
@@ -102,7 +99,7 @@ function SignUp() {
 									onChange={(event) => {
 										setProfilePhoto(event.target.files);
 									}}
-								/>
+								/> */}
 
 								<input
 									name="username"
