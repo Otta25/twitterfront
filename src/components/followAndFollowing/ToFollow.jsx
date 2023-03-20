@@ -3,6 +3,10 @@ import FollowBtn from "../SmallComponents/FollowBtn";
 import { Link, useNavigate } from "react-router-dom";
 
 function ToFollow({ user, updateFollowingList }) {
+  const updateFollowings = () => {
+    updateFollowingList();
+  };
+
   return (
     <div class="p-2 container w-100">
       <div class="my-3">
@@ -25,12 +29,7 @@ function ToFollow({ user, updateFollowingList }) {
               <p className="mb-0 font-grey">@{user.username}</p>
             </div>
             <div class="ms-auto me-2">
-              {
-                <FollowBtn
-                  user={user}
-                  updateFollowingList={updateFollowingList}
-                />
-              }
+              {<FollowBtn user={user} updateFollowingList={updateFollowings} />}
             </div>
           </div>
         </div>
