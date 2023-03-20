@@ -14,7 +14,7 @@ function SignUp() {
 
 	const navigate = useNavigate();
 
-	console.log(profilePhoto)
+	
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -30,7 +30,7 @@ function SignUp() {
 			},
 			data: formdata,
 		});
-		console.log(formdata)
+		
 		navigate("/login");
 	};
 

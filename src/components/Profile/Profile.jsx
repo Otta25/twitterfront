@@ -21,7 +21,7 @@ function Profile() {
 	const { id } = useParams();
 	const [refresh, setRefresh] = useState(false);
 
-	console.log(profile)
+	
 
 	const updateTweetList = () => {
 		setRefresh((prev) => !prev);
@@ -54,7 +54,7 @@ function Profile() {
 		setFollowersNumber(followersNumber + 1);
 		setRefresh((prev) => !prev);
 	}
-	console.log(refresh);
+	
 
 	function unFollow() {
 		const unFollowUser = async () => {
