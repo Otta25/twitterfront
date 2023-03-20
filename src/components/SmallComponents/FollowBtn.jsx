@@ -35,7 +35,7 @@ function FollowBtn({ user, updateFollowingList }) {
     });
 
     updateFollowingList();
-    setIsFollowing([...isFollowing, user._id]);
+    setIsFollowing(true);
   };
 
   const unFollowUser = async () => {
