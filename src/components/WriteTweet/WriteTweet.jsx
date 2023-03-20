@@ -32,31 +32,31 @@ function WriteTweet({ setTweets, tweets, updateTweetList }) {
 			className="border-bottom border-top w-100"
 			transition={{ delay: 0.2, ease: "linear" }}
 		>
-			<div className="border-bottom p-3">
-				<div className="mb-3">
+			<div class="border-bottom p-3">
+				<div class="mb-3">
 					<label
 						for="exampleFormControlInput1"
-						className="form-label principal-text pt-3 ps-2"
+						class="form-label principal-text pt-3 ps-2"
 					>
 						Home
 					</label>
 				</div>
 				<form action="/" method="get" onSubmit={handleSubmit}>
-					<div className="text-center">
-						<div className="row">
-							<div className="col-2 d-none d-sm-inline-block">
+					<div class="text-center">
+						<div class="row">
+							<div class="col-2 d-none d-sm-inline-block">
 								<a href="/usuarios/<%=req.user.username%>">
 									<img
-										className="ms-2 tiny-pic-profile "
+										class="ms-2 tiny-pic-profile "
 										alt=""
-										srcSet=""
+										srcset=""
 									/>
 								</a>
 							</div>
-							<div className="col-10">
-								<div className="mb-3">
+							<div class="col-10">
+								<div class="mb-3">
 									<textarea
-										className="form-control border-0"
+										class="form-control border-0"
 										id="exampleFormControlTextarea1"
 										rows="3"
 										placeholder="What’s happening?"
@@ -71,9 +71,9 @@ function WriteTweet({ setTweets, tweets, updateTweetList }) {
 							</div>
 						</div>
 					</div>
-					<div className="d-flex justify-content-end">
+					<div class="d-flex justify-content-end">
 						<button
-							className="btn btn-skyblue me-2 rounded-pill px-3"
+							class="btn btn-skyblue me-2 rounded-pill px-3"
 							type="submit"
 						>
 							Tweet

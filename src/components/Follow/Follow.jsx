@@ -11,7 +11,7 @@ function follow() {
 							className="me-3 p-1"
 							src="/img/avatarSmall.svg"
 							alt=""
-							srcSet=""
+							srcset=""
 						/>
 						<div>
 							<p className="mb-0 fw-bold">follow name</p>
