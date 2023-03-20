@@ -21,7 +21,7 @@ function Profile() {
 	const { id } = useParams();
 	const [refresh, setRefresh] = useState(false);
 
-	console.log(profile);
+	
 
 	const updateTweetList = () => {
 		setRefresh((prev) => !prev);

@@ -39,7 +39,7 @@ function WriteTweet({ setTweets, tweets, updateTweetList }) {
 		getUserPhoto();
 	}, []);
 
-	console.log(userPhoto);
+	
 
 	return (
 		<motion.div
@@ -48,11 +48,11 @@ function WriteTweet({ setTweets, tweets, updateTweetList }) {
 			className="border-bottom w-100"
 			transition={{ delay: 0.2, ease: "linear" }}
 		>
-			<div class="border-bottom p-3">
-				<div class="mb-3">
+			<div className="border-bottom p-3">
+				<div className="mb-3">
 					<label
 						for="exampleFormControlInput1"
-						class="form-label principal-text pt-3 ps-2"
+						className="form-label principal-text pt-3 ps-2"
 					>
 						Home
 					</label>
@@ -63,19 +63,19 @@ function WriteTweet({ setTweets, tweets, updateTweetList }) {
 					onSubmit={handleSubmit}
 					className="border border-2 border-primary border-opacity-25 p-3 rounded bg-light"
 				>
-					<div class="text-center">
-						<div class="row">
-							<div class="col-1 d-none d-sm-inline-block">
+					<div className="text-center">
+						<div className="row">
+							<div className="col-1 d-none d-sm-inline-block">
 								<img
-									class="ms-auto tiny-pic-profile border border-4 border-primary border-opacity-25"
+									className="ms-auto tiny-pic-profile border border-4 border-primary border-opacity-25"
 									alt=""
 									src={userPhoto}
 								/>
 							</div>
-							<div class="col-10">
-								<div class="mb-3">
+							<div className="col-10">
+								<div className="mb-3">
 									<textarea
-										class="form-control border-0 border bg-light"
+										className="form-control border-0 border bg-light"
 										id="exampleFormControlTextarea1"
 										rows="3"
 										placeholder="What’s happening?"
@@ -90,9 +90,9 @@ function WriteTweet({ setTweets, tweets, updateTweetList }) {
 							</div>
 						</div>
 					</div>
-					<div class="d-flex justify-content-end">
+					<div className="d-flex justify-content-end">
 						<button
-							class="btn btn-skyblue me-2 rounded-pill px-3"
+							className="btn btn-skyblue me-2 rounded-pill px-3"
 							type="submit"
 						>
 							Tweet
